@@ -4,13 +4,4 @@
 void init();
 void menu(int startTo);
 
-void polynomialAddition();
-/*
-void polynomialMultiplication();
-void polynomialMultiplicationByScalar();
-void polynomialResultForVariable();
-void polynomialComposition();
-*/
-
-
 #endif

@@ -5,30 +5,9 @@
 #include <stdlib.h>
 #include <windows.h>
 
-void polynomialAddition()
-{
-    int p1Size = 0, p2Size = 0;
-    printf("    Input size of P1(x) (from 0) : ");
-    scanf("%d",&p1Size);
-    struct Polynomial *polynomial1 = createPolynomial(p1Size);
-    printf("    Input size of P2(x) (from 0) : ");
-    scanf("%d",&p2Size);
-    struct Polynomial *polynomial2 = createPolynomial(p2Size);
-    printf("\n");
-    struct A *result = polynomialAdditionFunction(polynomial1, polynomial2, p1Size, p2Size);
-
-    printf("    P1(x) : \n");
-    showPolynomial(polynomial1);
-    printf("\n    P2(x) : \n");
-    showPolynomial(polynomial2);
-    printf("\n    P1(x)+P2(x) : \n");
-    showPolynomial(result);
-}
-
-
 void init()
 {
-    polynomialAddition();
+    polynomialMultiplicationByScalar();
 }
 
 
@@ -94,6 +73,7 @@ void menu(int startTo)
                 SetConsoleTextAttribute(hConsole, 12);
                 printf("/menu/P(x)*a/\n");
                 SetConsoleTextAttribute(hConsole, 8);
+                polynomialMultiplicationByScalar();
                 system("pause");
                 menu(0);
                 break;

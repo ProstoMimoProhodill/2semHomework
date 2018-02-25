@@ -18,37 +18,6 @@ struct Polynomial
     struct Polynomial *next;
 };
 
-struct Coefficient *getData()
-{
-    struct Coefficient *result = (struct Coefficient *)malloc(sizeof(struct Coefficient));
-    char data[100];
-    printf("    Input integer or float:  ");
-    scanf("%s",&data);
-
-    type dataType = INT;
-    for(int i=0;data[i]!='\0';i++)
-    {
-        if(data[i]=='.')
-        {
-            dataType = DOUBLE;
-            break;
-        }
-    }
-
-    if(dataType==DOUBLE)
-    {
-        result->coefficientType = DOUBLE;
-        float a = atof(data);
-        result->coefficientData = &a;
-    }else if(dataType==INT){
-        result->coefficientType = INT;
-        int a = atoi(data);
-        result->coefficientData = &a;
-    }
-
-    return result;
-}
-
 struct Polynomial *createPolynomial(int num)
 {
     type currentType;
@@ -58,7 +27,34 @@ struct Polynomial *createPolynomial(int num)
         struct Polynomial *link = (struct Polynomial *)malloc(sizeof(struct Polynomial));
         struct Coefficient *data = (struct Coefficient *)malloc(sizeof(struct Coefficient));
         struct Coefficient *savedata = (struct Coefficient *)malloc(sizeof(struct Coefficient));
-        data = getData();
+
+        struct Coefficient *result = (struct Coefficient *)malloc(sizeof(struct Coefficient));
+        char datastr[100];
+        printf("        Input integer or float:  ");
+        scanf("%s",&datastr);
+
+        type dataType = INT;
+        for(int i=0;datastr[i]!='\0';i++)
+        {
+            if(datastr[i]=='.')
+            {
+                dataType = DOUBLE;
+                break;
+            }
+        }
+
+        if(dataType==DOUBLE)
+        {
+            result->coefficientType = DOUBLE;
+            float a = atof(datastr);
+            result->coefficientData = &a;
+        }else if(dataType==INT){
+            result->coefficientType = INT;
+            int a = atoi(datastr);
+            result->coefficientData = &a;
+        }
+
+        data = result;
 
         if(i==0){
             if(data->coefficientType == DOUBLE){
@@ -73,7 +69,6 @@ struct Polynomial *createPolynomial(int num)
                 return;
             }
         }
-
 
         void *ptr;
 		if(data->coefficientType == DOUBLE){
@@ -110,17 +105,17 @@ void showPolynomial(struct Polynomial *polynomial)
         if(current->coefficient.coefficientType == DOUBLE)
         {
             float a = *((float *)(current->coefficient.coefficientData));
-            printf("    double n: %d, a: %f  \n", current->n, a);
+            printf("        double n: %d, a: %f  \n", current->n, a);
         }else{
             int a = *((int *)(current->coefficient.coefficientData));
-            printf("    int n: %d, a: %d  \n", current->n, a);
+            printf("        int n: %d, a: %d  \n", current->n, a);
         }
         current = current->next;
     }
 }
 
 
-struct A *polynomialAdditionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size)
+struct Polynomial *polynomialAdditionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size)
 {
     struct Polynomial *current1 = polynomial1;
     struct Polynomial *current2 = polynomial2;
@@ -194,6 +189,8 @@ struct A *polynomialAdditionFunction(struct Polynomial *polynomial1, struct Poly
 
             link->next = result;
             result = link;
+
+            free(savedata);
         }
     }else{
         for(int i=min(p1Size, p2Size);i>=0;i--)
@@ -270,28 +267,162 @@ struct A *polynomialAdditionFunction(struct Polynomial *polynomial1, struct Poly
 
             link->next = result;
             result = link;
+
+            free(savedata);
         }
     }
     return result;
 }
 
-void polynomialMultiplication(struct Polynomial *polynomial1, struct Polynomial *polynomial2)
+struct Polynomial *polynomialMultiplicationFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size)
+{
+    struct Polynomial *result = NULL;
+    return result;
+}
+
+struct Polynomial *polynomialMultiplicationByScalarFunction(struct Polynomial *polynomial, int psize, struct Coefficient *scalar)
+{
+    struct Polynomial *result = NULL;
+    struct Polynomial *current = polynomial;
+
+    for(int i=0;i<=psize;i++)
+    {
+        struct Polynomial *link = (struct Polynomial *)malloc(sizeof(struct Polynomial));
+        struct Coefficient *savedata = (struct Coefficient *)malloc(sizeof(struct Coefficient));
+
+        void *ptr;
+		if(scalar->coefficientType == DOUBLE){
+            if(current->coefficient.coefficientType == DOUBLE){
+                float a = *((float *)(current->coefficient.coefficientData));
+                float s = *((float *)(scalar->coefficientData));
+                link->coefficient.coefficientType = DOUBLE;
+                float res = a*s;
+                ptr = &res;
+            }else{
+                float a = (float)(*((int *)(current->coefficient.coefficientData)));
+                float s = *((float *)(scalar->coefficientData));
+                link->coefficient.coefficientType = DOUBLE;
+                float res = a*s;
+                ptr = &res;
+            }
+        }else{
+            if(current->coefficient.coefficientType == DOUBLE){
+                float a = *((float *)(current->coefficient.coefficientData));
+                float s = (float)(*((int *)(scalar->coefficientData)));
+                link->coefficient.coefficientType = DOUBLE;
+                float res = a*s;
+                ptr = &res;
+            }else{
+                int a = (*((int *)(current->coefficient.coefficientData)));
+                int s = (*((int *)(scalar->coefficientData)));
+                link->coefficient.coefficientType = INT;
+                int res = a*s;
+                ptr = &res;
+            }
+        }
+
+        (savedata->coefficientData) = ptr;
+
+        link->n = current->n;
+        link->coefficient.coefficientData = malloc(sizeof(scalar->coefficientType));
+        memcpy((link->coefficient.coefficientData), (savedata->coefficientData), sizeof(struct Coefficient));
+        link->next = result;
+        result = link;
+
+        current = current->next;
+        free(savedata);
+    }
+    return result;
+}
+
+struct Polynomial *polynomialResultForVariableFunction(struct Polynomial *polynomial, int psize, void *X)
+{
+    struct Polynomial *result = NULL;
+    return result;
+}
+
+struct Polynomial *polynomialCompositionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size)
+{
+    struct Polynomial *result = NULL;
+    return result;
+}
+
+void polynomialAddition()
+{
+    int p1Size = 0, p2Size = 0;
+    printf("    Input size of P1(x) (from 0) : ");
+    scanf("%d",&p1Size);
+    struct Polynomial *polynomial1 = createPolynomial(p1Size);
+    printf("    Input size of P2(x) (from 0) : ");
+    scanf("%d",&p2Size);
+    struct Polynomial *polynomial2 = createPolynomial(p2Size);
+    printf("\n");
+    struct Polynomial *result = polynomialAdditionFunction(polynomial1, polynomial2, p1Size, p2Size);
+
+    printf("    P1(x) : \n");
+    showPolynomial(polynomial1);
+    printf("\n    P2(x) : \n");
+    showPolynomial(polynomial2);
+    printf("\n    P1(x)+P2(x) : \n");
+    showPolynomial(result);
+}
+
+
+void polynomialMultiplication()
 {
 
 }
 
-void polynomialMultiplicationByScalar(struct Polynomial *polynomial, void *scalar)
+void polynomialMultiplicationByScalar()
+{
+    int pSize = 0;
+    printf("    Input size of P(x) (from 0) : ");
+    scanf("%d",&pSize);
+    struct Polynomial *polynomial = createPolynomial(pSize);
+    printf("    Input value of scalar : \n");
+
+    struct Coefficient *resultData = (struct Coefficient *)malloc(sizeof(struct Coefficient));
+    char datastr[100];
+    printf("        Input integer or float:  ");
+    scanf("%s",&datastr);
+
+    type dataType = INT;
+    for(int i=0;datastr[i]!='\0';i++)
+    {
+        if(datastr[i]=='.')
+        {
+            dataType = DOUBLE;
+            break;
+        }
+    }
+
+    if(dataType==DOUBLE)
+    {
+        resultData->coefficientType = DOUBLE;
+        float a = atof(datastr);
+        resultData->coefficientData = &a;
+    }else if(dataType==INT){
+        resultData->coefficientType = INT;
+        int a = atoi(datastr);
+        resultData->coefficientData = &a;
+    }
+
+    struct Coefficient *scalar =  resultData;
+    struct Polynomial *result = polynomialMultiplicationByScalarFunction(polynomial, pSize, scalar);
+
+    printf("    P(x) : \n");
+    showPolynomial(polynomial);
+    printf("\n    A*P(x) : \n");
+    showPolynomial(result);
+}
+
+void polynomialResultForVariable()
 {
 
 }
 
-void polynomialResultForVariable(struct Polynomial *polynomial, void *X)
+
+void polynomialComposition()
 {
 
 }
-
-void polynomialComposition(struct Polynomial *polynomial1, struct Polynomial *polynomial2)
-{
-
-}
-

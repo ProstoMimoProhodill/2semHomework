@@ -5,16 +5,18 @@ struct Coefficient;
 struct Polynomial;
 
 struct Polynomial *createPolynomial(int num);
-struct Coefficient *getData();
 void showPolynomial(struct Polynomial *polynomial);
 
-//void polynomialAddition();
-struct A *polynomialAdditionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size);
-void polynomialMultiplication(struct Polynomial *polynomial1, struct Polynomial *polynomial2);
-void polynomialMultiplicationByScalar(struct Polynomial *polynomial, void *scalar);
-void polynomialResultForVariable(struct Polynomial *polynomial, void *X);
-void polynomialComposition(struct Polynomial *polynomial1, struct Polynomial *polynomial2);
+struct Polynomial *polynomialAdditionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size);
+struct Polynomial *polynomialMultiplicationFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size);
+struct Polynomial *polynomialMultiplicationByScalarFunction(struct Polynomial *polynomial, int psize, struct Coefficient *scalar);
+struct Polynomial *polynomialResultForVariableFunction(struct Polynomial *polynomial, int psize, void *X);
+struct Polynomial *polynomialCompositionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size);
 
-//int polynomialResultInt(struct Polynomial *polynomial, int x);
+void polynomialAddition();
+void polynomialMultiplication();
+void polynomialMultiplicationByScalar();
+void polynomialResultForVariable();
+void polynomialComposition();
+
 #endif
-
