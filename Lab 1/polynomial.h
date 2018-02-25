@@ -1,0 +1,19 @@
+#ifndef POLYNOMIAL_H_
+#define POLYNOMIAL_H_
+
+struct Coefficient;
+struct Polynomial;
+
+struct Polynomial *createList(int num);
+struct Coefficient *getData();
+void showList(struct Polynomial *polynomial);
+
+void polynomialAddition();
+void polynomialMultiplication(struct Polynomial *polynomial1, struct Polynomial *polynomial2);
+void polynomialMultiplicationByScalar(struct Polynomial *polynomial, void *scalar);
+void polynomialResultForVariable(struct Polynomial *polynomial, void *X);
+void polynomialComposition(struct Polynomial *polynomial1, struct Polynomial *polynomial2);
+
+//int polynomialResultInt(struct Polynomial *polynomial, int x);
+#endif
+
