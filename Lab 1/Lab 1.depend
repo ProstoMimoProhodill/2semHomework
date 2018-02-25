@@ -89,3 +89,48 @@
 	<stdio.h>
 	<stdlib.h>
 
+1519553896 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\interface.c
+	"interface.h"
+	"polynomial.h"
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1519549994 d:\andrewproj\myprogram\c\2semhomework\lab 1\interface.h
+
+1519550288 d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomial.h
+
+1519553761 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"util.h"
+	"tests.h"
+	"interface.h"
+	"polynomial.h"
+
+1519513276 d:\andrewproj\myprogram\c\2semhomework\lab 1\util.h
+
+1518963386 d:\andrewproj\myprogram\c\2semhomework\lab 1\tests.h
+
+1518963468 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\tests.c
+	"util.h"
+	"tests.h"
+	"interface.h"
+	"polynomial.h"
+	<stdio.h>
+	<stdlib.h>
+
+1519513394 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\util.c
+	"util.h"
+	<time.h>
+	<stdio.h>
+	<stdlib.h>
+
+1519553535 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomial.c
+	"polynomial.h"
+	"util.h"
+	<math.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+

@@ -4,11 +4,12 @@
 struct Coefficient;
 struct Polynomial;
 
-struct Polynomial *createList(int num);
+struct Polynomial *createPolynomial(int num);
 struct Coefficient *getData();
-void showList(struct Polynomial *polynomial);
+void showPolynomial(struct Polynomial *polynomial);
 
-void polynomialAddition();
+//void polynomialAddition();
+struct A *polynomialAdditionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size);
 void polynomialMultiplication(struct Polynomial *polynomial1, struct Polynomial *polynomial2);
 void polynomialMultiplicationByScalar(struct Polynomial *polynomial, void *scalar);
 void polynomialResultForVariable(struct Polynomial *polynomial, void *X);

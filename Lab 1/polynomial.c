@@ -49,7 +49,7 @@ struct Coefficient *getData()
     return result;
 }
 
-struct Polynomial *createList(int num)
+struct Polynomial *createPolynomial(int num)
 {
     type currentType;
     struct Polynomial *head = NULL;
@@ -102,7 +102,7 @@ struct Polynomial *createList(int num)
 }
 
 
-void showList(struct Polynomial *polynomial)
+void showPolynomial(struct Polynomial *polynomial)
 {
     struct Polynomial *current = NULL;
     current = polynomial;
@@ -120,111 +120,159 @@ void showList(struct Polynomial *polynomial)
 }
 
 
-void polynomialAddition()
+struct A *polynomialAdditionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size)
 {
-    int p1Size = 0, p2Size = 0;
-    printf("    Input size of P1(x) (from 0) : ");
-    scanf("%d",&p1Size);
-    struct Polynomial *polynomial1 = createList(p1Size);
-    printf("    Input size of P2(x) (from 0) : ");
-    scanf("%d",&p2Size);
-    struct Polynomial *polynomial2 = createList(p2Size);
-    printf("\n");
-
     struct Polynomial *current1 = polynomial1;
     struct Polynomial *current2 = polynomial2;
-
-
-    printf("    P1(x) : \n");
-    showList(polynomial1);
-    printf("\n    P2(x) : \n");
-    showList(polynomial2);
-    printf("\n");
-
+    struct Polynomial *result = NULL;
 
     if(polynomial1->coefficient.coefficientType==polynomial2->coefficient.coefficientType){
         for(int i=min(p1Size, p2Size);i>=0;i--)
         {
+            struct Polynomial *link = (struct Polynomial *)malloc(sizeof(struct Polynomial));
+            struct Coefficient *savedata = (struct Coefficient *)malloc(sizeof(struct Coefficient));
 
             if((p1Size==max(p1Size, p2Size)&&(i==min(p1Size, p2Size)))){
                 for(int d=0;d<(max(p1Size, p2Size)-min(p1Size, p2Size));d++){
                     void *ptr1 = current1->coefficient.coefficientData;
                     if(current1->coefficient.coefficientType==DOUBLE){
-                        printf("    double n: %d, a: %f  \n", max(p1Size, p2Size)-d, (*((float *)ptr1)) );
+                        link->n = max(p1Size, p2Size)-d;
+                        link->coefficient.coefficientData = ptr1;
+                        link->coefficient.coefficientType = DOUBLE;
                     }else{
-                        printf("    int n: %d, a: %d  \n", max(p1Size, p2Size)-d, (*((int *)ptr1)) );
+                        link->n = max(p1Size, p2Size)-d;
+                        link->coefficient.coefficientData = ptr1;
+                        link->coefficient.coefficientType = INT;
                     }
                     current1 = current1->next;
+                    link->next = result;
+                    result = link;
+                    link = (struct Polynomial *)malloc(sizeof(struct Polynomial));
                 }
             }else if((p2Size==max(p1Size, p2Size)&&(i==min(p1Size, p2Size)))){
                 for(int d=0;d<(max(p1Size, p2Size)-min(p1Size, p2Size));d++){
                     void *ptr2 = current2->coefficient.coefficientData;
                     if(current2->coefficient.coefficientType==DOUBLE){
-                        printf("    double n: %d, a: %f  \n", max(p1Size, p2Size)-d, (*((float *)ptr2)) );
+                        link->n = max(p1Size, p2Size)-d;
+                        link->coefficient.coefficientData = ptr2;
+                        link->coefficient.coefficientType = DOUBLE;
                     }else{
-                        printf("    int n: %d, a: %d  \n", max(p1Size, p2Size)-d, (*((int *)ptr2)) );
+                        link->n = max(p1Size, p2Size)-d;
+                        link->coefficient.coefficientData = ptr2;
+                        link->coefficient.coefficientType = INT;
                     }
                     current2 = current2->next;
+                    link->next = result;
+                    result = link;
+                    link = (struct Polynomial *)malloc(sizeof(struct Polynomial));
                 }
             }
 
             void *ptr1 = current1->coefficient.coefficientData;
             void *ptr2 = current2->coefficient.coefficientData;
 
+            void *data;
+
             if((current1->coefficient.coefficientType == DOUBLE)&&(current2->coefficient.coefficientType == DOUBLE)){
-                printf("    double n: %d, a: %f  \n", i, (*((float *)ptr1)) + (*((float *)ptr2)) );
+                float a = ((*((float *)ptr1)) + (*((float *)ptr2)));
+                data = &a;
+                link->n = i;
+                link->coefficient.coefficientType = DOUBLE;
             }else if((current1->coefficient.coefficientType == INT)&&(current2->coefficient.coefficientType == INT)){
-                printf("    int n: %d, a: %d  \n", i, (*((int *)ptr1)) + (*((int *)ptr2)) );
+                int a = ((*((int *)ptr1)) + (*((int *)ptr2)));
+                data = &a;
+                link->n = i;
+                link->coefficient.coefficientType = INT;
             }
+
+            (savedata->coefficientData) = data;
+            link->coefficient.coefficientData = malloc(sizeof(struct Coefficient));
+            memcpy((link->coefficient.coefficientData), (savedata->coefficientData), sizeof(struct Coefficient));
 
             current1 = current1->next;
             current2 = current2->next;
+
+            link->next = result;
+            result = link;
         }
     }else{
         for(int i=min(p1Size, p2Size);i>=0;i--)
         {
+            struct Polynomial *link = (struct Polynomial *)malloc(sizeof(struct Polynomial));
+            struct Coefficient *savedata = (struct Coefficient *)malloc(sizeof(struct Coefficient));
 
             if((p1Size==max(p1Size, p2Size)&&(i==min(p1Size, p2Size)))){
                 for(int d=0;d<(max(p1Size, p2Size)-min(p1Size, p2Size));d++){
                     void *ptr1 = current1->coefficient.coefficientData;
                     if(current1->coefficient.coefficientType==DOUBLE){
-                        printf("    double n: %d, a: %f  \n", max(p1Size, p2Size)-d, (*((float *)ptr1)) );
+                        link->n = max(p1Size, p2Size)-d;
+                        link->coefficient.coefficientData = ptr1;
+                        link->coefficient.coefficientType = DOUBLE;
                     }else{
-                        printf("    int n: %d, a: %d  \n", max(p1Size, p2Size)-d, (*((int *)ptr1)) );
+                        link->n = max(p1Size, p2Size)-d;
+                        link->coefficient.coefficientData = ptr1;
+                        link->coefficient.coefficientType = INT;
                     }
                     current1 = current1->next;
+                    link->next = result;
+                    result = link;
+                    link = (struct Polynomial *)malloc(sizeof(struct Polynomial));
                 }
             }else if((p2Size==max(p1Size, p2Size)&&(i==min(p1Size, p2Size)))){
                 for(int d=0;d<(max(p1Size, p2Size)-min(p1Size, p2Size));d++){
                     void *ptr2 = current2->coefficient.coefficientData;
                     if(current2->coefficient.coefficientType==DOUBLE){
-                        printf("    double n: %d, a: %f  \n", max(p1Size, p2Size)-d, (*((float *)ptr2)) );
+                        link->n = max(p1Size, p2Size)-d;
+                        link->coefficient.coefficientData = ptr2;
+                        link->coefficient.coefficientType = DOUBLE;
                     }else{
-                        printf("    int n: %d, a: %d  \n", max(p1Size, p2Size)-d, (*((int *)ptr2)) );
+                        link->n = max(p1Size, p2Size)-d;
+                        link->coefficient.coefficientData = ptr2;
+                        link->coefficient.coefficientType = INT;
                     }
                     current2 = current2->next;
+                    link->next = result;
+                    result = link;
+                    link = (struct Polynomial *)malloc(sizeof(struct Polynomial));
                 }
             }
 
             void *ptr1 = current1->coefficient.coefficientData;
             void *ptr2 = current2->coefficient.coefficientData;
+            void *data;
 
             float p1,p2;
 
             if(current1->coefficient.coefficientType==INT){
                 p1 = (float)(*((int *)ptr1));
                 p2 = (*((float *)ptr2));
+
+                float a = p1 + p2;
+                data = &a;
+                link->n = i;
+                link->coefficient.coefficientType = DOUBLE;
             }else if(current2->coefficient.coefficientType==INT){
                 p1 = (*((float *)ptr1));
-                p2 = (float)(*((float *)ptr2));
+                p2 = (float)(*((int *)ptr2));
+
+                float a = p1 + p2;
+                data = &a;
+                link->n = i;
+                link->coefficient.coefficientType = DOUBLE;
             }
 
-            printf("    double n: %d, a: %f  \n", i, p1 + p2 );
+            (savedata->coefficientData) = data;
+            link->coefficient.coefficientData = malloc(sizeof(struct Coefficient));
+            memcpy((link->coefficient.coefficientData), (savedata->coefficientData), sizeof(struct Coefficient));
 
             current1 = current1->next;
             current2 = current2->next;
+
+            link->next = result;
+            result = link;
         }
     }
+    return result;
 }
 
 void polynomialMultiplication(struct Polynomial *polynomial1, struct Polynomial *polynomial2)
