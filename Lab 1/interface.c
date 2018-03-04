@@ -1,15 +1,10 @@
 #include "interface.h"
-#include "polynomial.h"
+#include "polynomialList.h"
+#include "polynomialDynamicArray.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
-
-void init()
-{
-    polynomialMultiplicationByScalar();
-}
-
 
 void menu(int startTo)
 {
@@ -56,9 +51,37 @@ void menu(int startTo)
                 SetConsoleTextAttribute(hConsole, 12);
                 printf("/menu/P1(x)+P2(x)/\n");
                 SetConsoleTextAttribute(hConsole, 8);
-                polynomialAddition();
-                system("pause");
-                menu(0);
+                printf(">1 Dynamic array    \n");
+                printf(">2 List             \n");
+                printf(">3 Back             \n");
+                scanf("%d",&a);
+                switch (a)
+                {
+                    case 1:
+                        system("cls");
+                        SetConsoleTextAttribute(hConsole, 12);
+                        printf("/menu/P1(x)+P2(x)/Dynamic array \n");
+                        SetConsoleTextAttribute(hConsole, 8);
+                        //polynomialAddition();
+                        system("pause");
+                        menu(0);
+                        break;
+                    case 2:
+                        system("cls");
+                        SetConsoleTextAttribute(hConsole, 12);
+                        printf("/menu/P1(x)+P2(x)/List  \n");
+                        SetConsoleTextAttribute(hConsole, 8);
+                        listPolynomialAddition();
+                        system("pause");
+                        menu(0);
+                        break;
+                    case 3:
+                        menu(0);
+                        break;
+                    default:
+                        undefined();
+                        break;
+                }
                 break;
             case 2:
                 system("cls");
@@ -73,9 +96,37 @@ void menu(int startTo)
                 SetConsoleTextAttribute(hConsole, 12);
                 printf("/menu/P(x)*a/\n");
                 SetConsoleTextAttribute(hConsole, 8);
-                polynomialMultiplicationByScalar();
-                system("pause");
-                menu(0);
+                printf(">1 Dynamic array    \n");
+                printf(">2 List             \n");
+                printf(">3 Back             \n");
+                scanf("%d",&a);
+                switch (a)
+                {
+                    case 1:
+                        system("cls");
+                        SetConsoleTextAttribute(hConsole, 12);
+                        printf("/menu/P(x)*a/Dynamic array \n");
+                        SetConsoleTextAttribute(hConsole, 8);
+                        //polynomialMultiplicationByScalar();
+                        system("pause");
+                        menu(0);
+                        break;
+                    case 2:
+                        system("cls");
+                        SetConsoleTextAttribute(hConsole, 12);
+                        printf("/menu/P(x)*a/List  \n");
+                        SetConsoleTextAttribute(hConsole, 8);
+                        listPolynomialMultiplicationByScalar();
+                        system("pause");
+                        menu(0);
+                        break;
+                    case 3:
+                        menu(0);
+                        break;
+                    default:
+                        undefined();
+                        break;
+                }
                 break;
             case 4:
                 system("cls");

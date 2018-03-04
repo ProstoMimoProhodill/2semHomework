@@ -4,11 +4,11 @@
 #include "util.h"
 #include "tests.h"
 #include "interface.h"
-#include "polynomial.h"
+#include "polynomialList.h"
+#include "polynomialDynamicArray.h"
 
 int main()
 {
     menu(0);
-    //init();
     return 0;
 }

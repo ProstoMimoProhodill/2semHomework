@@ -42,6 +42,14 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="polynomial.h" />
+		<Unit filename="polynomialDynamicArray.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="polynomialDynamicArray.h" />
+		<Unit filename="polynomialList.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="polynomialList.h" />
 		<Unit filename="tests.c">
 			<Option compilerVar="CC" />
 		</Unit>

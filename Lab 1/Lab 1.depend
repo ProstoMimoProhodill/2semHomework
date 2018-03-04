@@ -89,34 +89,37 @@
 	<stdio.h>
 	<stdlib.h>
 
-1519591795 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\interface.c
+1520153138 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\interface.c
 	"interface.h"
-	"polynomial.h"
+	"polynomialList.h"
+	"polynomialDynamicArray.h"
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 
 1519591771 d:\andrewproj\myprogram\c\2semhomework\lab 1\interface.h
 
-1519592084 d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomial.h
+1519650612 d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomial.h
 
-1519587483 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\main.c
+1520152663 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\main.c
 	<stdio.h>
 	<stdlib.h>
 	"util.h"
 	"tests.h"
 	"interface.h"
-	"polynomial.h"
+	"polynomialList.h"
+	"polynomialDynamicArray.h"
 
 1519513276 d:\andrewproj\myprogram\c\2semhomework\lab 1\util.h
 
 1518963386 d:\andrewproj\myprogram\c\2semhomework\lab 1\tests.h
 
-1518963468 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\tests.c
+1520152688 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\tests.c
 	"util.h"
 	"tests.h"
 	"interface.h"
-	"polynomial.h"
+	"polynomialList.h"
+	"polynomialDynamicArray.h"
 	<stdio.h>
 	<stdlib.h>
 
@@ -126,8 +129,28 @@
 	<stdio.h>
 	<stdlib.h>
 
-1519566983 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomial.c
+1520151446 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomial.c
 	"polynomial.h"
+	"util.h"
+	<math.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+
+1520151670 d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomialdynamicarray.h
+
+1520151678 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomialdynamicarray.c
+	"polynomialDynamicArray.h"
+	"util.h"
+	<math.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+
+1520153050 d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomiallist.h
+
+1520153106 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomiallist.c
+	"polynomialList.h"
 	"util.h"
 	<math.h>
 	<string.h>

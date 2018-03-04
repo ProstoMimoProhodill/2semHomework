@@ -1,4 +1,4 @@
-#include "polynomial.h"
+#include "polynomialList.h"
 #include "util.h"
 #include <math.h>
 #include <string.h>
@@ -115,7 +115,7 @@ void showPolynomial(struct Polynomial *polynomial)
 }
 
 
-struct Polynomial *polynomialAdditionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size)
+struct Polynomial *listPolynomialAdditionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size)
 {
     struct Polynomial *current1 = polynomial1;
     struct Polynomial *current2 = polynomial2;
@@ -274,13 +274,13 @@ struct Polynomial *polynomialAdditionFunction(struct Polynomial *polynomial1, st
     return result;
 }
 
-struct Polynomial *polynomialMultiplicationFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size)
+struct Polynomial *listPolynomialMultiplicationFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size)
 {
     struct Polynomial *result = NULL;
     return result;
 }
 
-struct Polynomial *polynomialMultiplicationByScalarFunction(struct Polynomial *polynomial, int psize, struct Coefficient *scalar)
+struct Polynomial *listPolynomialMultiplicationByScalarFunction(struct Polynomial *polynomial, int psize, struct Coefficient *scalar)
 {
     struct Polynomial *result = NULL;
     struct Polynomial *current = polynomial;
@@ -335,19 +335,20 @@ struct Polynomial *polynomialMultiplicationByScalarFunction(struct Polynomial *p
     return result;
 }
 
-struct Polynomial *polynomialResultForVariableFunction(struct Polynomial *polynomial, int psize, void *X)
+struct Coefficient *listPolynomialResultForVariableFunction(struct Polynomial *polynomial, int psize, struct Coefficient *X)
+{
+    struct Coefficient *result;
+    struct Polynomial *current = polynomial;
+    return result;
+}
+
+struct Polynomial *listPolynomialCompositionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size)
 {
     struct Polynomial *result = NULL;
     return result;
 }
 
-struct Polynomial *polynomialCompositionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size)
-{
-    struct Polynomial *result = NULL;
-    return result;
-}
-
-void polynomialAddition()
+void listPolynomialAddition()
 {
     int p1Size = 0, p2Size = 0;
     printf("    Input size of P1(x) (from 0) : ");
@@ -357,7 +358,7 @@ void polynomialAddition()
     scanf("%d",&p2Size);
     struct Polynomial *polynomial2 = createPolynomial(p2Size);
     printf("\n");
-    struct Polynomial *result = polynomialAdditionFunction(polynomial1, polynomial2, p1Size, p2Size);
+    struct Polynomial *result = listPolynomialAdditionFunction(polynomial1, polynomial2, p1Size, p2Size);
 
     printf("    P1(x) : \n");
     showPolynomial(polynomial1);
@@ -368,12 +369,12 @@ void polynomialAddition()
 }
 
 
-void polynomialMultiplication()
+void listPolynomialMultiplication()
 {
 
 }
 
-void polynomialMultiplicationByScalar()
+void listPolynomialMultiplicationByScalar()
 {
     int pSize = 0;
     printf("    Input size of P(x) (from 0) : ");
@@ -408,7 +409,7 @@ void polynomialMultiplicationByScalar()
     }
 
     struct Coefficient *scalar =  resultData;
-    struct Polynomial *result = polynomialMultiplicationByScalarFunction(polynomial, pSize, scalar);
+    struct Polynomial *result = listPolynomialMultiplicationByScalarFunction(polynomial, pSize, scalar);
 
     printf("    P(x) : \n");
     showPolynomial(polynomial);
@@ -416,13 +417,51 @@ void polynomialMultiplicationByScalar()
     showPolynomial(result);
 }
 
-void polynomialResultForVariable()
+void listPolynomialResultForVariable()
 {
+    int pSize = 0;
+    printf("    Input size of P(x) (from 0) : ");
+    scanf("%d",&pSize);
+    struct Polynomial *polynomial = createPolynomial(pSize);
+    printf("    Input X : \n");
 
+    struct Coefficient *resultData = (struct Coefficient *)malloc(sizeof(struct Coefficient));
+    char datastr[100];
+    printf("        Input integer or float:  ");
+    scanf("%s",&datastr);
+
+    type dataType = INT;
+    for(int i=0;datastr[i]!='\0';i++)
+    {
+        if(datastr[i]=='.')
+        {
+            dataType = DOUBLE;
+            break;
+        }
+    }
+
+    if(dataType==DOUBLE)
+    {
+        resultData->coefficientType = DOUBLE;
+        float a = atof(datastr);
+        resultData->coefficientData = &a;
+    }else if(dataType==INT){
+        resultData->coefficientType = INT;
+        int a = atoi(datastr);
+        resultData->coefficientData = &a;
+    }
+
+    struct Coefficient *X =  resultData;
+    struct Coefficient *result = listPolynomialResultForVariableFunction(polynomial, pSize, X);
+
+    printf("    P(x) : \n");
+    showPolynomial(polynomial);
+    printf("\n    P(x) for X : \n");
+    showPolynomial(result);
 }
 
 
-void polynomialComposition()
+void listPolynomialComposition()
 {
 
 }
