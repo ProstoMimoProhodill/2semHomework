@@ -38,10 +38,6 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="polynomial.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="polynomial.h" />
 		<Unit filename="polynomialDynamicArray.c">
 			<Option compilerVar="CC" />
 		</Unit>

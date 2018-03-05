@@ -2,16 +2,16 @@
 #define POLYNOMIALLIST_H_
 
 struct Coefficient;
-struct Polynomial;
+struct PolynomialList;
 
-struct Polynomial *createPolynomial(int num);
-void showPolynomial(struct Polynomial *polynomial);
+struct PolynomialList *createlistPolynomial(int num);
+void showPolynomial(struct PolynomialList *polynomial);
 
-struct Polynomial *listPolynomialAdditionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size);
-struct Polynomial *listPolynomialMultiplicationFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size);
-struct Polynomial *listPolynomialMultiplicationByScalarFunction(struct Polynomial *polynomial, int psize, struct Coefficient *scalar);
-struct Coefficient *listPolynomialResultForVariableFunction(struct Polynomial *polynomial, int psize, struct Coefficient *X);
-struct Polynomial *listPolynomialCompositionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size);
+struct PolynomialList *listPolynomialAdditionFunction(struct PolynomialList *polynomial1, struct PolynomialList *polynomial2, int p1Size, int p2Size);
+struct PolynomialList *listPolynomialMultiplicationFunction(struct PolynomialList *polynomial1, struct PolynomialList *polynomial2, int p1Size, int p2Size);
+struct PolynomialList *listPolynomialMultiplicationByScalarFunction(struct PolynomialList *polynomial, int psize, struct Coefficient *scalar);
+struct Coefficient *listPolynomialResultForVariableFunction(struct PolynomialList *polynomial, int psize, struct Coefficient *X);
+struct PolynomialList *listPolynomialCompositionFunction(struct PolynomialList *polynomial1, struct PolynomialList *polynomial2, int p1Size, int p2Size);
 
 void listPolynomialAddition();
 void listPolynomialMultiplication();

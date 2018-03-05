@@ -11,20 +11,20 @@ struct Coefficient
     type coefficientType;
 };
 
-struct Polynomial
+struct PolynomialList
 {
     int n;
     struct Coefficient coefficient;
-    struct Polynomial *next;
+    struct PolynomialList *next;
 };
 
-struct Polynomial *createPolynomial(int num)
+struct PolynomialList *createlistPolynomial(int num)
 {
     type currentType;
-    struct Polynomial *head = NULL;
+    struct PolynomialList *head = NULL;
     for(int i=0;i<=num;i++)
     {
-        struct Polynomial *link = (struct Polynomial *)malloc(sizeof(struct Polynomial));
+        struct PolynomialList *link = (struct PolynomialList *)malloc(sizeof(struct PolynomialList));
         struct Coefficient *data = (struct Coefficient *)malloc(sizeof(struct Coefficient));
         struct Coefficient *savedata = (struct Coefficient *)malloc(sizeof(struct Coefficient));
 
@@ -97,9 +97,9 @@ struct Polynomial *createPolynomial(int num)
 }
 
 
-void showPolynomial(struct Polynomial *polynomial)
+void showPolynomial(struct PolynomialList *polynomial)
 {
-    struct Polynomial *current = NULL;
+    struct PolynomialList *current = NULL;
     current = polynomial;
     while (current != NULL) {
         if(current->coefficient.coefficientType == DOUBLE)
@@ -115,16 +115,16 @@ void showPolynomial(struct Polynomial *polynomial)
 }
 
 
-struct Polynomial *listPolynomialAdditionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size)
+struct PolynomialList *listPolynomialAdditionFunction(struct PolynomialList *polynomial1, struct PolynomialList *polynomial2, int p1Size, int p2Size)
 {
-    struct Polynomial *current1 = polynomial1;
-    struct Polynomial *current2 = polynomial2;
-    struct Polynomial *result = NULL;
+    struct PolynomialList *current1 = polynomial1;
+    struct PolynomialList *current2 = polynomial2;
+    struct PolynomialList *result = NULL;
 
     if(polynomial1->coefficient.coefficientType==polynomial2->coefficient.coefficientType){
         for(int i=min(p1Size, p2Size);i>=0;i--)
         {
-            struct Polynomial *link = (struct Polynomial *)malloc(sizeof(struct Polynomial));
+            struct PolynomialList *link = (struct PolynomialList *)malloc(sizeof(struct PolynomialList));
             struct Coefficient *savedata = (struct Coefficient *)malloc(sizeof(struct Coefficient));
 
             if((p1Size==max(p1Size, p2Size)&&(i==min(p1Size, p2Size)))){
@@ -142,7 +142,7 @@ struct Polynomial *listPolynomialAdditionFunction(struct Polynomial *polynomial1
                     current1 = current1->next;
                     link->next = result;
                     result = link;
-                    link = (struct Polynomial *)malloc(sizeof(struct Polynomial));
+                    link = (struct PolynomialList *)malloc(sizeof(struct PolynomialList));
                 }
             }else if((p2Size==max(p1Size, p2Size)&&(i==min(p1Size, p2Size)))){
                 for(int d=0;d<(max(p1Size, p2Size)-min(p1Size, p2Size));d++){
@@ -159,7 +159,7 @@ struct Polynomial *listPolynomialAdditionFunction(struct Polynomial *polynomial1
                     current2 = current2->next;
                     link->next = result;
                     result = link;
-                    link = (struct Polynomial *)malloc(sizeof(struct Polynomial));
+                    link = (struct PolynomialList *)malloc(sizeof(struct PolynomialList));
                 }
             }
 
@@ -195,7 +195,7 @@ struct Polynomial *listPolynomialAdditionFunction(struct Polynomial *polynomial1
     }else{
         for(int i=min(p1Size, p2Size);i>=0;i--)
         {
-            struct Polynomial *link = (struct Polynomial *)malloc(sizeof(struct Polynomial));
+            struct PolynomialList *link = (struct PolynomialList *)malloc(sizeof(struct PolynomialList));
             struct Coefficient *savedata = (struct Coefficient *)malloc(sizeof(struct Coefficient));
 
             if((p1Size==max(p1Size, p2Size)&&(i==min(p1Size, p2Size)))){
@@ -213,7 +213,7 @@ struct Polynomial *listPolynomialAdditionFunction(struct Polynomial *polynomial1
                     current1 = current1->next;
                     link->next = result;
                     result = link;
-                    link = (struct Polynomial *)malloc(sizeof(struct Polynomial));
+                    link = (struct PolynomialList *)malloc(sizeof(struct PolynomialList));
                 }
             }else if((p2Size==max(p1Size, p2Size)&&(i==min(p1Size, p2Size)))){
                 for(int d=0;d<(max(p1Size, p2Size)-min(p1Size, p2Size));d++){
@@ -230,7 +230,7 @@ struct Polynomial *listPolynomialAdditionFunction(struct Polynomial *polynomial1
                     current2 = current2->next;
                     link->next = result;
                     result = link;
-                    link = (struct Polynomial *)malloc(sizeof(struct Polynomial));
+                    link = (struct PolynomialList *)malloc(sizeof(struct PolynomialList));
                 }
             }
 
@@ -274,20 +274,20 @@ struct Polynomial *listPolynomialAdditionFunction(struct Polynomial *polynomial1
     return result;
 }
 
-struct Polynomial *listPolynomialMultiplicationFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size)
+struct PolynomialList *listPolynomialMultiplicationFunction(struct PolynomialList *polynomial1, struct PolynomialList *polynomial2, int p1Size, int p2Size)
 {
-    struct Polynomial *result = NULL;
+    struct PolynomialList *result = NULL;
     return result;
 }
 
-struct Polynomial *listPolynomialMultiplicationByScalarFunction(struct Polynomial *polynomial, int psize, struct Coefficient *scalar)
+struct PolynomialList *listPolynomialMultiplicationByScalarFunction(struct PolynomialList *polynomial, int psize, struct Coefficient *scalar)
 {
-    struct Polynomial *result = NULL;
-    struct Polynomial *current = polynomial;
+    struct PolynomialList *result = NULL;
+    struct PolynomialList *current = polynomial;
 
     for(int i=0;i<=psize;i++)
     {
-        struct Polynomial *link = (struct Polynomial *)malloc(sizeof(struct Polynomial));
+        struct PolynomialList *link = (struct PolynomialList *)malloc(sizeof(struct PolynomialList));
         struct Coefficient *savedata = (struct Coefficient *)malloc(sizeof(struct Coefficient));
 
         void *ptr;
@@ -335,16 +335,16 @@ struct Polynomial *listPolynomialMultiplicationByScalarFunction(struct Polynomia
     return result;
 }
 
-struct Coefficient *listPolynomialResultForVariableFunction(struct Polynomial *polynomial, int psize, struct Coefficient *X)
+struct Coefficient *listPolynomialResultForVariableFunction(struct PolynomialList *polynomial, int psize, struct Coefficient *X)
 {
     struct Coefficient *result;
-    struct Polynomial *current = polynomial;
+    struct PolynomialList *current = polynomial;
     return result;
 }
 
-struct Polynomial *listPolynomialCompositionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2, int p1Size, int p2Size)
+struct PolynomialList *listPolynomialCompositionFunction(struct PolynomialList *polynomial1, struct PolynomialList *polynomial2, int p1Size, int p2Size)
 {
-    struct Polynomial *result = NULL;
+    struct PolynomialList *result = NULL;
     return result;
 }
 
@@ -353,12 +353,12 @@ void listPolynomialAddition()
     int p1Size = 0, p2Size = 0;
     printf("    Input size of P1(x) (from 0) : ");
     scanf("%d",&p1Size);
-    struct Polynomial *polynomial1 = createPolynomial(p1Size);
+    struct PolynomialList *polynomial1 = createlistPolynomial(p1Size);
     printf("    Input size of P2(x) (from 0) : ");
     scanf("%d",&p2Size);
-    struct Polynomial *polynomial2 = createPolynomial(p2Size);
+    struct PolynomialList *polynomial2 = createlistPolynomial(p2Size);
     printf("\n");
-    struct Polynomial *result = listPolynomialAdditionFunction(polynomial1, polynomial2, p1Size, p2Size);
+    struct PolynomialList *result = listPolynomialAdditionFunction(polynomial1, polynomial2, p1Size, p2Size);
 
     printf("    P1(x) : \n");
     showPolynomial(polynomial1);
@@ -379,7 +379,7 @@ void listPolynomialMultiplicationByScalar()
     int pSize = 0;
     printf("    Input size of P(x) (from 0) : ");
     scanf("%d",&pSize);
-    struct Polynomial *polynomial = createPolynomial(pSize);
+    struct PolynomialList *polynomial = createlistPolynomial(pSize);
     printf("    Input value of scalar : \n");
 
     struct Coefficient *resultData = (struct Coefficient *)malloc(sizeof(struct Coefficient));
@@ -409,7 +409,7 @@ void listPolynomialMultiplicationByScalar()
     }
 
     struct Coefficient *scalar =  resultData;
-    struct Polynomial *result = listPolynomialMultiplicationByScalarFunction(polynomial, pSize, scalar);
+    struct PolynomialList *result = listPolynomialMultiplicationByScalarFunction(polynomial, pSize, scalar);
 
     printf("    P(x) : \n");
     showPolynomial(polynomial);
@@ -422,7 +422,7 @@ void listPolynomialResultForVariable()
     int pSize = 0;
     printf("    Input size of P(x) (from 0) : ");
     scanf("%d",&pSize);
-    struct Polynomial *polynomial = createPolynomial(pSize);
+    struct PolynomialList *polynomial = createlistPolynomial(pSize);
     printf("    Input X : \n");
 
     struct Coefficient *resultData = (struct Coefficient *)malloc(sizeof(struct Coefficient));

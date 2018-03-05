@@ -89,7 +89,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1520153138 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\interface.c
+1520286166 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\interface.c
 	"interface.h"
 	"polynomialList.h"
 	"polynomialDynamicArray.h"
@@ -101,7 +101,7 @@
 
 1519650612 d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomial.h
 
-1520152663 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\main.c
+1520235344 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\main.c
 	<stdio.h>
 	<stdlib.h>
 	"util.h"
@@ -137,9 +137,9 @@
 	<stdio.h>
 	<stdlib.h>
 
-1520151670 d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomialdynamicarray.h
+1520286217 d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomialdynamicarray.h
 
-1520151678 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomialdynamicarray.c
+1520237755 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomialdynamicarray.c
 	"polynomialDynamicArray.h"
 	"util.h"
 	<math.h>
@@ -147,9 +147,9 @@
 	<stdio.h>
 	<stdlib.h>
 
-1520153050 d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomiallist.h
+1520285064 d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomiallist.h
 
-1520153106 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomiallist.c
+1520285316 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomiallist.c
 	"polynomialList.h"
 	"util.h"
 	<math.h>

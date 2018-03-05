@@ -9,6 +9,7 @@
 
 int main()
 {
+    //test();
     menu(0);
     return 0;
 }
