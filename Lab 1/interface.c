@@ -8,11 +8,7 @@
 
 void test()
 {
-    //struct Polynomial *pol = createPolynomial();
-    //outputPolynomial(pol);
-    //printf("element 0 :  %d", *(int *)getElementFromDynamicArray(pol, 0));
-
-    polynomialAddition();
+    polynomialMultiplicationByScalar();
 }
 
 void menu(int startTo)
@@ -97,9 +93,27 @@ void menu(int startTo)
                 SetConsoleTextAttribute(hConsole, 12);
                 printf("/menu/P1(x)*P2(x)/\n");
                 SetConsoleTextAttribute(hConsole, 8);
-                polynomialMultiplication();
-                system("pause");
-                menu(0);
+                printf(">1 Dynamic array    \n");
+                printf(">2 Back             \n");
+                scanf("%d",&a);
+                switch (a)
+                {
+                    case 1:
+                        system("cls");
+                        SetConsoleTextAttribute(hConsole, 12);
+                        printf("/menu/P1(x)*P2(x)/Dynamic array/ \n");
+                        SetConsoleTextAttribute(hConsole, 8);
+                        polynomialMultiplication();
+                        system("pause");
+                        menu(0);
+                        break;
+                    case 2:
+                        menu(0);
+                        break;
+                    default:
+                        undefined();
+                        break;
+                }
                 break;
             case 3:
                 system("cls");
@@ -143,9 +157,27 @@ void menu(int startTo)
                 SetConsoleTextAttribute(hConsole, 12);
                 printf("/menu/P(x) = /\n");
                 SetConsoleTextAttribute(hConsole, 8);
-                polynomialResultForVariable();
-                system("pause");
-                menu(0);
+                printf(">1 Dynamic array    \n");
+                printf(">2 Back             \n");
+                scanf("%d",&a);
+                switch (a)
+                {
+                    case 1:
+                        system("cls");
+                        SetConsoleTextAttribute(hConsole, 12);
+                        printf("/menu/P(x) = /Dynamic array/ \n");
+                        SetConsoleTextAttribute(hConsole, 8);
+                        polynomialResultForVariable();
+                        system("pause");
+                        menu(0);
+                        break;
+                    case 2:
+                        menu(0);
+                        break;
+                    default:
+                        undefined();
+                        break;
+                }
                 break;
             case 5:
                 system("cls");
@@ -309,7 +341,7 @@ void menu(int startTo)
                 }
                 break;
             case 6:
-                return;
+                exit(0);
                 break;
             default:
                 undefined();

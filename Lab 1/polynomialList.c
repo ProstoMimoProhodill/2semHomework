@@ -454,7 +454,7 @@ void listPolynomialResultForVariable()
     struct Coefficient *X =  resultData;
     struct Coefficient *result = listPolynomialResultForVariableFunction(polynomial, pSize, X);
 
-    printf("    P(x) : \n");
+    printf("\n    P(x) : \n");
     showPolynomial(polynomial);
     printf("\n    P(x) for X : \n");
     showPolynomial(result);
