@@ -188,7 +188,52 @@ struct Polynomial *polynomialMultiplicationByScalarFunction(struct Polynomial *p
 
 struct Scalar *polynomialResultForVariableFunction(struct Polynomial *polynomial, struct Scalar *X)
 {
+    struct Scalar *result = (struct Scalar *)malloc(sizeof(struct Scalar));
 
+    int k = 0;
+    void *data = &k;
+
+    for(int i=0;i<=polynomial->n;i++){
+        if(polynomial->dataType==INT){
+            if(X->scalarType==INT){
+                result->scalarType = INT;
+
+                int p = *(int *)data + ((*(int *)getElementFromDynamicArray(polynomial, i))*pow(*(int *)X->scalarData, i));
+                data = malloc(sizeof(int));
+                memcpy(data, &p, sizeof(int));
+
+            }else if(X->scalarType==DOUBLE){
+                result->scalarType = DOUBLE;
+
+                float p = *(float *)data + ((*(int *)getElementFromDynamicArray(polynomial, i))*pow(*(float *)X->scalarData, i));
+                data = malloc(sizeof(float));
+                memcpy(data, &p, sizeof(float));
+            }
+        }else if(polynomial->dataType==DOUBLE){
+            if(X->scalarType==INT){
+                result->scalarType = DOUBLE;
+
+                float p = *(float *)data + ((*(float *)getElementFromDynamicArray(polynomial, i))*pow(*(int *)X->scalarData, i));
+                data = malloc(sizeof(float));
+                memcpy(data, &p, sizeof(float));
+            }else if(X->scalarType==DOUBLE){
+                result->scalarType = DOUBLE;
+
+                float p = *(float *)data + ((*(float *)getElementFromDynamicArray(polynomial, i))*pow(*(float *)X->scalarData, i));
+                data = malloc(sizeof(float));
+                memcpy(data, &p, sizeof(float));
+            }
+        }
+    }
+
+    if(result->scalarType==INT){
+        result->scalarData = malloc(sizeof(int));
+        memcpy(result->scalarData, data, sizeof(int));
+    }else if(result->scalarType==DOUBLE){
+        result->scalarData = malloc(sizeof(float));
+        memcpy(result->scalarData, data, sizeof(float));
+    }
+    return result;
 }
 
 
@@ -258,7 +303,49 @@ void polynomialMultiplicationByScalar()
 
 void polynomialResultForVariable()
 {
+    struct Polynomial *polynomial = createPolynomial();
+    struct Scalar *X = (struct Scalar *)malloc(sizeof(struct Scalar));
 
+    printf("    Input value of X : ");
+    char datastr[100];
+    scanf("%s",&datastr);
+    type dataType = INT;
+    for(int i=0;datastr[i]!='\0';i++){
+        if(datastr[i]=='.'){
+            dataType = DOUBLE;
+            break;
+        }
+    }
+
+    if(dataType==INT){
+        X->scalarType = INT;
+        int p = atoi(datastr);
+        X->scalarData = malloc(sizeof(int));
+        memcpy(X->scalarData, &p, sizeof(int));
+    }else if(dataType==DOUBLE){
+        X->scalarType = DOUBLE;
+        float p = atof(datastr);
+        X->scalarData = malloc(sizeof(float));
+        memcpy(X->scalarData, &p, sizeof(float));
+    }
+
+    struct Scalar *result = (struct Scalar *)malloc(sizeof(struct Scalar));
+    result = polynomialResultForVariableFunction(polynomial, X);
+
+    printf("\n    P(x) :\n");
+    outputPolynomial(polynomial);
+
+    if(X->scalarType==INT){
+        printf("\n    P( %d ) : ",*(int *)X->scalarData);
+    }else if(X->scalarType==DOUBLE){
+        printf("\n    P( %f ) = ",*(float *)X->scalarData);
+    }
+
+    if(result->scalarType==INT){
+        printf("%d\n",*(int *)result->scalarData);
+    }else if(result->scalarType==DOUBLE){
+        printf("%f\n",*(float *)result->scalarData);
+    }
 }
 
 

@@ -8,7 +8,7 @@
 
 void test()
 {
-    polynomialMultiplicationByScalar();
+    polynomialResultForVariable();
 }
 
 void menu(int startTo)
