@@ -6,8 +6,8 @@ struct Polynomial *createPolynomial();
 void outputPolynomial(struct Polynomial *polynomial);
 
 struct Polynomial *getData();
-void *pushElementInDynamicArray(void *dynamicArray, int elementType, int i);
-void *getElementFromDynamicArray(void *dynamicArray, int i);
+struct Polynomial *pushElementInDynamicArray(struct Polynomial *dynamicArray, void *element);
+void *getElementFromDynamicArray(struct Polynomial *dynamicArray, int i);
 
 struct Polynomial *polynomialAdditionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2);
 struct Polynomial *polynomialMultiplicationFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2);
