@@ -8,12 +8,11 @@
 
 void test()
 {
-    struct Polynomial *pol = createPolynomial();
-    outputPolynomial(pol);
+    //struct Polynomial *pol = createPolynomial();
+    //outputPolynomial(pol);
+    //printf("element 0 :  %d", *(int *)getElementFromDynamicArray(pol, 0));
 
-    printf("element 0 :  %d", *(int *)getElementFromDynamicArray(pol, 1));
-
-    //polynomialAddition();
+    polynomialAddition();
 }
 
 void menu(int startTo)

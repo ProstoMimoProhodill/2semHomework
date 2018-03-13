@@ -84,15 +84,13 @@ struct Polynomial *pushElementInDynamicArray(struct Polynomial *dynamicArray, vo
 void *getElementFromDynamicArray(struct Polynomial *dynamicArray, int i)
 {
     void *result;
-
-    if(elementType==0){
-        int *p = (int *)dynamicArray;
+    if(dynamicArray->dataType==INT){
+        int *p = (int *)dynamicArray->data;
         result = (int *)(p+i);
-    }else{
-        float *p = (float *)dynamicArray;
+    }else if(dynamicArray->dataType==DOUBLE){
+        float *p = (float *)dynamicArray->data;
         result = (float *)(p+i);
     }
-
     return result;
 }
 
