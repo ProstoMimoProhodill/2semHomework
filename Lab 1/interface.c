@@ -8,7 +8,7 @@
 
 void test()
 {
-    polynomialAddition();
+    polynomialMultiplication();
 }
 
 void menu(int startTo)
