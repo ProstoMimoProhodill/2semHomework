@@ -25,23 +25,42 @@ struct Polynomial *createPolynomial()
     int currType=0, n=0;
     printf("    Input size of P(x) (from 0) : ");
     scanf("%d", &n);
-    printf("    Input type (0-int, 1-float) : ");
-    scanf("%d", &currType);
-    polynomial->n = n;
-    (currType==0)?(polynomial->dataType=INT):(polynomial->dataType=DOUBLE);
 
+    polynomial->n = n;
     polynomial->data = NULL;
+
+    char datastr[100];
+    printf("         Input integer or float : ");
+    scanf("%s",&datastr);
+    type dataType = INT;
+    for(int i=0;datastr[i]!='\0';i++){
+        if(datastr[i]=='.'){
+            dataType = DOUBLE;
+            break;
+        }
+    }
+
+    if(dataType==INT){
+        polynomial->dataType=INT;
+        int element = atoi(datastr);
+        polynomial = pushElementInDynamicArray(polynomial, &element);
+    }else if(dataType==DOUBLE){
+        polynomial->dataType=DOUBLE;
+        float element = atof(datastr);
+        polynomial = pushElementInDynamicArray(polynomial, &element);
+    }
+
     if(polynomial->dataType==INT){
-        for(int i=0;i<=polynomial->n;i++){
+        for(int i=1;i<=polynomial->n;i++){
             int element;
-            printf("        Input int : ");
+            printf("                      Input int : ");
             scanf("%d", &element);
             polynomial = pushElementInDynamicArray(polynomial, &element);
         }
     }else if(polynomial->dataType==DOUBLE){
-        for(int i=0;i<=polynomial->n;i++){
+        for(int i=1;i<=polynomial->n;i++){
             float element;
-            printf("        Input float : ");
+            printf("                    Input float : ");
             scanf("%f", &element);
             polynomial = pushElementInDynamicArray(polynomial, &element);
         }
@@ -116,34 +135,85 @@ void outputPolynomial(struct Polynomial *polynomial)
 
 struct Polynomial *polynomialAdditionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2)
 {
-    struct Polynomial *result = malloc(sizeof(polynomial1) + sizeof(polynomial2));
-
-    /*
-    int n = max(polynomial1->n, polynomial2->n);
-    result->n = malloc(sizeof(int));
-    result->n = n;
-
-    if((polynomial1->dataType==INT)&&(polynomial2->dataType==INT)){
-        result->dataType = INT;
-    }else if((polynomial1->dataType==DOUBLE)||(polynomial2->dataType==DOUBLE)){
-        result->dataType = DOUBLE;
+    struct Polynomial *result;
+    if(max(polynomial1->n, polynomial2->n)==polynomial1->n){
+        result = (struct Polynomial *)malloc(_msize(polynomial1));
+    }else if(max(polynomial1->n, polynomial2->n)==polynomial2->n){
+        result = (struct Polynomial *)malloc(_msize(polynomial2));
     }
 
-    for(int i=0;i<=max(polynomial1->n, polynomial2->n);i++)
+    result->n = max(polynomial1->n, polynomial2->n);
+    result->data = NULL;
+
+    for(int i=0;i<=min(polynomial1->n, polynomial2->n);i++)
     {
-        if(polynomial1->n!=polynomial2->n){
-            for(int d=0;d<max(polynomial1->n, polynomial2->n)-min(polynomial1->n, polynomial2->n);d++){
-                if()
+        if(polynomial1->dataType==INT){
+            if(polynomial2->dataType==INT){
+                result->dataType=INT;
+                int p = (*(int *)getElementFromDynamicArray(polynomial1,i)) + (*(int *)getElementFromDynamicArray(polynomial2,i));
+                result = pushElementInDynamicArray(result, &p);
+            }else if(polynomial2->dataType==DOUBLE){
+                result->dataType=DOUBLE;
+                float p = (*(int *)getElementFromDynamicArray(polynomial1,i)) + (*(float *)getElementFromDynamicArray(polynomial2,i));
+                result = pushElementInDynamicArray(result, &p);
+            }
+        }else if(polynomial1->dataType==DOUBLE){
+            if(polynomial2->dataType==INT){
+                result->dataType=DOUBLE;
+                float p = (*(float *)getElementFromDynamicArray(polynomial1,i)) + (*(int *)getElementFromDynamicArray(polynomial2,i));
+                result = pushElementInDynamicArray(result, &p);
+            }else if(polynomial2->dataType==DOUBLE){
+                result->dataType=DOUBLE;
+                float p = (*(float *)getElementFromDynamicArray(polynomial1,i)) + (*(float *)getElementFromDynamicArray(polynomial2,i));
+                result = pushElementInDynamicArray(result, &p);
             }
         }
-
-
-
     }
 
-    system("pause");
-
-    */
+    for(int i=min(polynomial1->n, polynomial2->n)+1;i<=max(polynomial1->n, polynomial2->n);i++)
+    {
+        if(polynomial1->dataType==INT){
+            if(polynomial2->dataType==INT){
+                result->dataType=INT;
+                int p;
+                if(max(polynomial1->n, polynomial2->n)==polynomial1->n){
+                    p = (*(int *)getElementFromDynamicArray(polynomial1,i));
+                }else if(max(polynomial1->n, polynomial2->n)==polynomial2->n){
+                    p = (*(int *)getElementFromDynamicArray(polynomial2,i));
+                }
+                result = pushElementInDynamicArray(result, &p);
+            }else if(polynomial2->dataType==DOUBLE){
+                result->dataType=DOUBLE;
+                float p;
+                if(max(polynomial1->n, polynomial2->n)==polynomial1->n){
+                    p = (float)(*(int *)getElementFromDynamicArray(polynomial1,i));
+                }else if(max(polynomial1->n, polynomial2->n)==polynomial2->n){
+                    p = (*(float *)getElementFromDynamicArray(polynomial2,i));
+                }
+                result = pushElementInDynamicArray(result, &p);
+            }
+        }else if(polynomial1->dataType==DOUBLE){
+            if(polynomial2->dataType==INT){
+                result->dataType=DOUBLE;
+                float p;
+                if(max(polynomial1->n, polynomial2->n)==polynomial1->n){
+                    p = (*(float *)getElementFromDynamicArray(polynomial1,i));
+                }else if(max(polynomial1->n, polynomial2->n)==polynomial2->n){
+                    p = (float)(*(int *)getElementFromDynamicArray(polynomial2,i));
+                }
+                result = pushElementInDynamicArray(result, &p);
+            }else if(polynomial2->dataType==DOUBLE){
+                result->dataType=DOUBLE;
+                float p;
+                if(max(polynomial1->n, polynomial2->n)==polynomial1->n){
+                    p = (*(float*)getElementFromDynamicArray(polynomial1,i));
+                }else if(max(polynomial1->n, polynomial2->n)==polynomial2->n){
+                    p = (*(float *)getElementFromDynamicArray(polynomial2,i));
+                }
+                result = pushElementInDynamicArray(result, &p);
+            }
+        }
+    }
     return result;
 }
 
@@ -247,14 +317,18 @@ void polynomialAddition()
 {
     struct Polynomial *polynomial1 = createPolynomial();
     struct Polynomial *polynomial2 = createPolynomial();
-
-    printf("pol1\n");
-    outputPolynomial(polynomial1);
-    printf("pol2\n");
-    outputPolynomial(polynomial2);
-
     struct Polynomial *result = polynomialAdditionFunction(polynomial1, polynomial2);
+
+    printf("    P1(x) : \n");
+    outputPolynomial(polynomial1);
+    printf("\n    P2(x) : \n");
+    outputPolynomial(polynomial2);
+    printf("\n    P1(x)+P2(x) : \n");
     outputPolynomial(result);
+
+    free(polynomial1);
+    free(polynomial2);
+    free(result);
 }
 
 
@@ -298,6 +372,10 @@ void polynomialMultiplicationByScalar()
     outputPolynomial(polynomial);
     printf("\n    A*P(x) :\n");
     outputPolynomial(result);
+
+    free(polynomial);
+    free(scalar);
+    free(result);
 }
 
 
@@ -336,7 +414,7 @@ void polynomialResultForVariable()
     outputPolynomial(polynomial);
 
     if(X->scalarType==INT){
-        printf("\n    P( %d ) : ",*(int *)X->scalarData);
+        printf("\n    P( %d ) = ",*(int *)X->scalarData);
     }else if(X->scalarType==DOUBLE){
         printf("\n    P( %f ) = ",*(float *)X->scalarData);
     }
@@ -346,6 +424,10 @@ void polynomialResultForVariable()
     }else if(result->scalarType==DOUBLE){
         printf("%f\n",*(float *)result->scalarData);
     }
+
+    free(polynomial);
+    free(X);
+    free(result);
 }
 
 
