@@ -214,9 +214,10 @@ void menu(int startTo)
                 SetConsoleTextAttribute(hConsole, 8);
                 printf(">1 P1(x)+P2(x)      \n");
                 printf(">2 P1(x)*P2(x)      \n");
-                printf(">3 P(x)*a           \n");
-                printf(">4 P(x) =           \n");
-                printf(">5 Back             \n");
+                printf(">3 P1(P2(x))   \n");
+                printf(">4 P(x)*a           \n");
+                printf(">5 P(x) =           \n");
+                printf(">6 Back             \n");
                 scanf("%d",&a);
                 switch (a)
                 {
@@ -293,6 +294,41 @@ void menu(int startTo)
                     case 3:
                         system("cls");
                         SetConsoleTextAttribute(hConsole, 12);
+                        printf(">/menu/Tests/P1(P2(x)) /\n");
+                        SetConsoleTextAttribute(hConsole, 8);
+                        printf(">1 Input \n");
+                        printf(">2 Random \n");
+                        printf(">3 Back   \n");
+                        scanf("%d",&a);
+                        switch (a)
+                        {
+                            case 1:
+                                system("cls");
+                                SetConsoleTextAttribute(hConsole, 12);
+                                printf("/menu/Tests/P1(P2(x))/Input/\n");
+                                SetConsoleTextAttribute(hConsole, 8);
+                                system("pause");
+                                menu(0);
+                                break;
+                            case 2:
+                                system("cls");
+                                SetConsoleTextAttribute(hConsole, 12);
+                                printf("/menu/Tests/P1(P2(x))/Random/\n");
+                                SetConsoleTextAttribute(hConsole, 8);
+                                system("pause");
+                                menu(0);
+                                break;
+                            case 3:
+                                menu(5);
+                                break;
+                            default:
+                                undefined();
+                                break;
+                        }
+                        break;
+                    case 4:
+                        system("cls");
+                        SetConsoleTextAttribute(hConsole, 12);
                         printf(">/menu/Tests/P(x)*a/\n");
                         SetConsoleTextAttribute(hConsole, 8);
                         printf(">1 Input \n");
@@ -325,7 +361,7 @@ void menu(int startTo)
                                 break;
                         }
                         break;
-                    case 4:
+                    case 5:
                         system("cls");
                         SetConsoleTextAttribute(hConsole, 12);
                         printf(">/menu/Tests/P(x) = /\n");
@@ -360,7 +396,7 @@ void menu(int startTo)
                                 break;
                         }
                         break;
-                    case 5:
+                    case 6:
                         menu(0);
                         break;
                     default:
