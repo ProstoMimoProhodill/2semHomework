@@ -5,6 +5,8 @@ struct Polynomial;
 struct Scalar;
 
 struct Polynomial *createPolynomial();
+struct Polynomial *createRandomPolynomial();
+
 struct Polynomial *pushElementInDynamicArray(struct Polynomial *polynomial, void *element);
 struct Polynomial *changeElementInDynamicArray(struct Polynomial *polynomial, int i, void *element);
 void *getElementFromDynamicArray(struct Polynomial *polynomial, int i);

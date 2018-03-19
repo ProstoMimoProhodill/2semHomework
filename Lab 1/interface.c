@@ -8,14 +8,39 @@
 
 void test()
 {
-    polynomialMultiplication();
+    //polynomialMultiplication();
+    polynomialComposition();
 }
+
+void autoTest()
+{
+    HANDLE hConsole;
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, 2);
+
+    testLogPolynomialAddition();
+    testLogPolynomialComposition();
+    testLogPolynomialMultiplication();
+    testLogPolynomialMultiplicationByScalar();
+    testLogPolynomialResultForVariable();
+
+    SetConsoleTextAttribute(hConsole, 8);
+    system("pause");
+}
+
 
 void menu(int startTo)
 {
     int again  = 1;
     HANDLE hConsole;
     hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    int input()
+    {
+        char datastr[100];
+        scanf("%s",&datastr);
+        return atoi(datastr);
+    }
 
     void undefined()
     {
@@ -45,7 +70,7 @@ void menu(int startTo)
             printf(">5 P(x) =      \n");
             printf(">6 Tests       \n");
             printf(">7 Exit        \n");
-            scanf("%d",&a);
+            a = input();
         }else{
             a = startTo;
         }
@@ -60,7 +85,7 @@ void menu(int startTo)
                 printf(">1 Dynamic array    \n");
                 printf(">2 List             \n");
                 printf(">3 Back             \n");
-                scanf("%d",&a);
+                a = input();
                 switch (a)
                 {
                     case 1:
@@ -96,7 +121,7 @@ void menu(int startTo)
                 SetConsoleTextAttribute(hConsole, 8);
                 printf(">1 Dynamic array    \n");
                 printf(">2 Back             \n");
-                scanf("%d",&a);
+                a = input();
                 switch (a)
                 {
                     case 1:
@@ -123,7 +148,7 @@ void menu(int startTo)
                 SetConsoleTextAttribute(hConsole, 8);
                 printf(">1 Dynamic array    \n");
                 printf(">2 Back             \n");
-                scanf("%d",&a);
+                a = input();
                 switch (a)
                 {
                     case 1:
@@ -151,7 +176,7 @@ void menu(int startTo)
                 printf(">1 Dynamic array    \n");
                 printf(">2 List             \n");
                 printf(">3 Back             \n");
-                scanf("%d",&a);
+                a = input();
                 switch (a)
                 {
                     case 1:
@@ -187,7 +212,7 @@ void menu(int startTo)
                 SetConsoleTextAttribute(hConsole, 8);
                 printf(">1 Dynamic array    \n");
                 printf(">2 Back             \n");
-                scanf("%d",&a);
+                a = input();
                 switch (a)
                 {
                     case 1:
@@ -218,7 +243,7 @@ void menu(int startTo)
                 printf(">4 P(x)*a           \n");
                 printf(">5 P(x) =           \n");
                 printf(">6 Back             \n");
-                scanf("%d",&a);
+                a = input();
                 switch (a)
                 {
                     case 1:
@@ -229,7 +254,7 @@ void menu(int startTo)
                         printf(">1 Input  \n");
                         printf(">2 Random \n");
                         printf(">3 Back   \n");
-                        scanf("%d",&a);
+                        a = input();
                         switch (a)
                         {
                             case 1:
@@ -237,6 +262,7 @@ void menu(int startTo)
                                 SetConsoleTextAttribute(hConsole, 12);
                                 printf("/menu/Tests/P1(x)+P2(x)/Input/\n");
                                 SetConsoleTextAttribute(hConsole, 8);
+                                testInputPolynomialAddition();
                                 system("pause");
                                 menu(0);
                                 break;
@@ -245,6 +271,7 @@ void menu(int startTo)
                                 SetConsoleTextAttribute(hConsole, 12);
                                 printf("/menu/Tests/P1(x)+P2(x)/Random/\n");
                                 SetConsoleTextAttribute(hConsole, 8);
+                                testRandomPolynomialAddition();
                                 system("pause");
                                 menu(0);
                                 break;
@@ -259,12 +286,12 @@ void menu(int startTo)
                     case 2:
                         system("cls");
                         SetConsoleTextAttribute(hConsole, 12);
-                        printf(">/menu/Tests/P1(x)*P2(x)/\n");
+                        printf("/menu/Tests/P1(x)*P2(x)/\n");
                         SetConsoleTextAttribute(hConsole, 8);
                         printf(">1 Input \n");
                         printf(">2 Random \n");
                         printf(">3 Back   \n");
-                        scanf("%d",&a);
+                        a = input();
                         switch (a)
                         {
                             case 1:
@@ -272,6 +299,7 @@ void menu(int startTo)
                                 SetConsoleTextAttribute(hConsole, 12);
                                 printf("/menu/Tests/P1(x)*P2(x)/Input/\n");
                                 SetConsoleTextAttribute(hConsole, 8);
+                                testInputPolynomialMultiplication();
                                 system("pause");
                                 menu(0);
                                 break;
@@ -280,6 +308,7 @@ void menu(int startTo)
                                 SetConsoleTextAttribute(hConsole, 12);
                                 printf("/menu/Tests/P1(x)*P2(x)/Random/\n");
                                 SetConsoleTextAttribute(hConsole, 8);
+                                testRandomPolynomialMultiplication();
                                 system("pause");
                                 menu(0);
                                 break;
@@ -294,12 +323,12 @@ void menu(int startTo)
                     case 3:
                         system("cls");
                         SetConsoleTextAttribute(hConsole, 12);
-                        printf(">/menu/Tests/P1(P2(x)) /\n");
+                        printf("/menu/Tests/P1(P2(x)) /\n");
                         SetConsoleTextAttribute(hConsole, 8);
                         printf(">1 Input \n");
                         printf(">2 Random \n");
                         printf(">3 Back   \n");
-                        scanf("%d",&a);
+                        a = input();
                         switch (a)
                         {
                             case 1:
@@ -307,6 +336,7 @@ void menu(int startTo)
                                 SetConsoleTextAttribute(hConsole, 12);
                                 printf("/menu/Tests/P1(P2(x))/Input/\n");
                                 SetConsoleTextAttribute(hConsole, 8);
+                                testInputPolynomialComposition();
                                 system("pause");
                                 menu(0);
                                 break;
@@ -315,6 +345,7 @@ void menu(int startTo)
                                 SetConsoleTextAttribute(hConsole, 12);
                                 printf("/menu/Tests/P1(P2(x))/Random/\n");
                                 SetConsoleTextAttribute(hConsole, 8);
+                                testRandomPolynomialComposition();
                                 system("pause");
                                 menu(0);
                                 break;
@@ -329,12 +360,12 @@ void menu(int startTo)
                     case 4:
                         system("cls");
                         SetConsoleTextAttribute(hConsole, 12);
-                        printf(">/menu/Tests/P(x)*a/\n");
+                        printf("/menu/Tests/P(x)*a/\n");
                         SetConsoleTextAttribute(hConsole, 8);
                         printf(">1 Input \n");
                         printf(">2 Random \n");
                         printf(">3 Back   \n");
-                        scanf("%d",&a);
+                        a = input();
                         switch (a)
                         {
                             case 1:
@@ -342,6 +373,7 @@ void menu(int startTo)
                                 SetConsoleTextAttribute(hConsole, 12);
                                 printf("/menu/Tests/P(x)*a/Input/\n");
                                 SetConsoleTextAttribute(hConsole, 8);
+                                testInputPolynomialMultiplicationByScalar();
                                 system("pause");
                                 menu(0);
                                 break;
@@ -350,6 +382,7 @@ void menu(int startTo)
                                 SetConsoleTextAttribute(hConsole, 12);
                                 printf("/menu/Tests/P(x)*a/Random/\n");
                                 SetConsoleTextAttribute(hConsole, 8);
+                                testRandomPolynomialMultiplicationByScalar();
                                 system("pause");
                                 menu(0);
                                 break;
@@ -364,12 +397,12 @@ void menu(int startTo)
                     case 5:
                         system("cls");
                         SetConsoleTextAttribute(hConsole, 12);
-                        printf(">/menu/Tests/P(x) = /\n");
+                        printf("/menu/Tests/P(x) = /\n");
                         SetConsoleTextAttribute(hConsole, 8);
                         printf(">1 Input \n");
                         printf(">2 Random \n");
                         printf(">3 Back   \n");
-                        scanf("%d",&a);
+                        a = input();
                         switch (a)
                         {
                             case 1:
@@ -377,6 +410,7 @@ void menu(int startTo)
                                 SetConsoleTextAttribute(hConsole, 12);
                                 printf("/menu/Tests/P(x) = /Input/\n");
                                 SetConsoleTextAttribute(hConsole, 8);
+                                testInputPolynomialResultForVariable();
                                 system("pause");
                                 menu(0);
                                 break;
@@ -385,6 +419,7 @@ void menu(int startTo)
                                 SetConsoleTextAttribute(hConsole, 12);
                                 printf("/menu/Tests/P(x) = /Random/\n");
                                 SetConsoleTextAttribute(hConsole, 8);
+                                testRandomPolynomialResultForVariable();
                                 system("pause");
                                 menu(0);
                                 break;

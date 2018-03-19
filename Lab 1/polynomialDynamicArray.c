@@ -22,9 +22,19 @@ struct Scalar
 struct Polynomial *createPolynomial()
 {
     struct Polynomial *polynomial=malloc(sizeof(struct Polynomial));
-    int currType=0, n=0;
-    printf("    Input size of P(x) (from 0) : ");
-    scanf("%d", &n);
+    int n=0;
+
+    int flag=0;
+    while(!flag){
+        printf("    Input size of P(x) (from 0) : ");
+        scanf("%d", &n);
+        if(n<0){
+            printf("    FROM 0 !11!  TRY AGAIN  \n");
+            flag=0;
+        }else{
+            flag=1;
+        }
+    }
 
     polynomial->n = n;
     polynomial->data = NULL;
@@ -65,6 +75,44 @@ struct Polynomial *createPolynomial()
             polynomial = pushElementInDynamicArray(polynomial, &element);
         }
     }
+    return polynomial;
+}
+
+
+struct Polynomial *createRandomPolynomial()
+{
+    struct Polynomial *polynomial=malloc(sizeof(struct Polynomial));
+    int n=0;
+    int dataType = 0;
+    int min = 0, max = 0;
+
+    n = randomInt(0, 100);
+    printf("         Input 0-integer or 1-float : ");
+    scanf("%d", &dataType);
+
+    polynomial->n = n;
+    polynomial->data = NULL;
+
+    printf("         Input range(int)           : \n");
+    printf("         Min : ");
+    scanf("%d", &min);
+    printf("         Max : ");
+    scanf("%d", &max);
+
+    if(dataType==0){
+        for(int i=0;i<=polynomial->n;i++){
+            polynomial->dataType=INT;
+            int element = randomInt(min, max);
+            polynomial = pushElementInDynamicArray(polynomial, &element);
+        }
+    }else if(dataType==1){
+         for(int i=0;i<=polynomial->n;i++){
+            polynomial->dataType=DOUBLE;
+            float element = randomFloat(min, max);
+            polynomial = pushElementInDynamicArray(polynomial, &element);
+        }
+    }
+
     return polynomial;
 }
 
@@ -299,22 +347,12 @@ struct Polynomial *polynomialMultiplicationFunction(struct Polynomial *polynomia
 {
     struct Polynomial *result;
 
-    if(polynomial1->dataType==INT){
-        if(polynomial2->dataType==INT){
-            result = malloc((polynomial1->n + polynomial2->n)*sizeof(int));
-            result->dataType = INT;
-        }else if(polynomial2->dataType==DOUBLE){
-            result = malloc((polynomial1->n + polynomial2->n)*sizeof(float));
-            result->dataType = DOUBLE;
-        }
-    }else if(polynomial1->dataType==DOUBLE){
-        if(polynomial2->dataType==INT){
-            result = malloc((polynomial1->n + polynomial2->n)*sizeof(float));
-            result->dataType = DOUBLE;
-        }else if(polynomial2->dataType==DOUBLE){
-            result = malloc((polynomial1->n + polynomial2->n)*sizeof(float));
-            result->dataType = DOUBLE;
-        }
+    if((polynomial1->dataType==INT)&&(polynomial2->dataType==INT)){
+        result = malloc((polynomial1->n + polynomial2->n + 2)*sizeof(int));
+        result->dataType = INT;
+    }else{
+        result = malloc((polynomial1->n + polynomial2->n)*sizeof(float) + 2*sizeof(int));
+        result->dataType = DOUBLE;
     }
 
     result->n = (polynomial1->n + polynomial2->n);
@@ -393,7 +431,7 @@ struct Polynomial *polynomialMultiplicationByScalarFunction(struct Polynomial *p
 
 struct Scalar *polynomialResultForVariableFunction(struct Polynomial *polynomial, struct Scalar *X)
 {
-    struct Scalar *result = (struct Scalar *)malloc(sizeof(struct Scalar));
+    struct Scalar *result = (struct Scalar *)malloc(_msize(polynomial));
 
     int k = 0;
     void *data = &k;
@@ -403,7 +441,7 @@ struct Scalar *polynomialResultForVariableFunction(struct Polynomial *polynomial
             if(X->scalarType==INT){
                 result->scalarType = INT;
 
-                int p = *(int *)data + ((*(int *)getElementFromDynamicArray(polynomial, i))*pow(*(int *)X->scalarData, i));
+                int p = *(int *)data + ((*(int *)getElementFromDynamicArray(polynomial, i))*int_pow(*(int *)X->scalarData, i));
                 data = malloc(sizeof(int));
                 memcpy(data, &p, sizeof(int));
 
@@ -444,13 +482,54 @@ struct Scalar *polynomialResultForVariableFunction(struct Polynomial *polynomial
 
 struct Polynomial *polynomialCompositionFunction(struct Polynomial *polynomial1, struct Polynomial *polynomial2)
 {
-    struct Polynomial *polynomialToPower(struct Polynomial *polynomial, int k)
-    {
-        struct Polynomial *result;
-        return result;
+    struct Polynomial *result;
+    struct Polynomial *oldData;
+
+    if((polynomial1->dataType==INT)&&(polynomial2->dataType==INT)){
+        result = (struct Polynomial *)malloc(((polynomial1->n * polynomial2->n) + 2)*sizeof(int));
+        result->dataType = INT;
+    }else {
+        result = (struct Polynomial *)malloc((polynomial1->n * polynomial2->n)*sizeof(float) + 2*sizeof(int));
+        result->dataType = DOUBLE;
     }
 
-    struct Polynomial *result;
+    result->n = (polynomial1->n * polynomial2->n);
+    result->data = NULL;
+
+    for(int i=0;i<=result->n;i++){
+        int k = 0;
+        result = pushElementInDynamicArray(result, &k);
+    }
+
+    oldData = malloc(_msize(polynomial2));
+    memcpy(&oldData, &polynomial2, _msize(polynomial2));
+
+    for(int i=0;i<=polynomial1->n;i++){
+        printf("i:  %d       pol1  n :   %d\n", i , polynomial1->n);
+        if(i==0){
+            result = changeElementInDynamicArray(result, i, polynomial1->data);
+        }else{
+            int a = *(int *)getElementFromDynamicArray(polynomial1, i);
+            for(int j=0;j<=oldData->n;j++){
+                int b = *(int *)getElementFromDynamicArray(oldData, j);
+                int c = *(int *)getElementFromDynamicArray(result, i*j) + (a*b);
+                result = changeElementInDynamicArray(result, i*j, &c);
+                printf("elem from result : %d \n", *(int *)getElementFromDynamicArray(result, i*j));
+            }
+
+            //printf("1\n");
+            struct Polynomial *data = polynomialMultiplicationFunction(oldData, polynomial2);
+
+            free(oldData);
+            //printf("2\n");
+            oldData = malloc(_msize(data));
+            //printf("3\n");
+            memcpy(&oldData, &data, _msize(data));
+            //printf("4\n");
+            outputPolynomial(oldData);
+        }
+    }
+
     return result;
 }
 

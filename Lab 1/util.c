@@ -3,18 +3,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-long long int randomInt(long long int min, long long max)
+int randomInt(int min, int max)
 {
-    srand(time(NULL));
-    return (min + rand()%max);
+    return rand() % (max - min + 1) + min;
 }
 
-long double randomFloat(long double min, long double max)
+float randomFloat(float min, float max)
 {
-    srand(time(NULL));
-    long double range = (max - min);
-    long double div = RAND_MAX / range;
-    return (min + (rand() / div));
+    float scale = rand() / (float) RAND_MAX;
+    return min + scale * ( max - min );
 }
 
 int min(int a, int b)
@@ -33,6 +30,20 @@ int max(int a, int b)
     }else{
         return a;
     }
+}
+
+
+int int_pow(int base, int exp)
+{
+    int result = 1;
+    while (exp)
+    {
+        if (exp & 1)
+           result *= base;
+        exp /= 2;
+        base *= base;
+    }
+    return result;
 }
 
 

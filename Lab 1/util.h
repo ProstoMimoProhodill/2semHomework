@@ -4,11 +4,13 @@
 typedef enum {false, true} bool;
 typedef enum {INT, DOUBLE} type;
 
-long long int randomInt(long long int min, long long max);
-long double randomFloat(long double min, long double max);
+int randomInt(int min, int max);
+float randomFloat(float min, float max);
 
 int min(int a, int b);
 int max(int a, int b);
+
+int int_pow(int base, int exp);
 
 #endif
 

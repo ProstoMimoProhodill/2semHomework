@@ -10,6 +10,7 @@
 int main()
 {
     //test();
+    //autoTest();
     menu(0);
     return 0;
 }
