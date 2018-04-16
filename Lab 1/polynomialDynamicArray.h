@@ -7,9 +7,9 @@ struct Scalar;
 struct Polynomial *createPolynomial();
 struct Polynomial *createRandomPolynomial();
 
-struct Polynomial *pushElementInDynamicArray(struct Polynomial *polynomial, void *element);
-struct Polynomial *changeElementInDynamicArray(struct Polynomial *polynomial, int i, void *element);
-void *getElementFromDynamicArray(struct Polynomial *polynomial, int i);
+struct Polynomial *push(struct Polynomial *polynomial, void *element);
+struct Polynomial *change(struct Polynomial *polynomial, int i, void *element);
+void *get(struct Polynomial *polynomial, int i);
 void graphicalOutputPolynomial(struct Polynomial *polynomial);
 void outputPolynomial(struct Polynomial *polynomial);
 

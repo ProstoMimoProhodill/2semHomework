@@ -156,7 +156,7 @@ void menu(int startTo)
                         SetConsoleTextAttribute(hConsole, 12);
                         printf("/menu/P1(P2(x))/Dynamic array/ \n");
                         SetConsoleTextAttribute(hConsole, 8);
-                        polynomialMultiplication();
+                        polynomialComposition();
                         system("pause");
                         menu(0);
                         break;

@@ -151,6 +151,8 @@ void testRandomPolynomialMultiplicationByScalar()
     struct Polynomial *result = (struct Polynomial *)malloc(sizeof(struct Polynomial));
     result = polynomialMultiplicationByScalarFunction(polynomial, scalar);
 
+    printf("\n    P(x) : \n");
+    outputPolynomial(polynomial);
     printf("\n    A*P(x) :\n");
     outputPolynomial(result);
 
@@ -190,6 +192,10 @@ void testRandomPolynomialResultForVariable()
 
     struct Scalar *result = (struct Scalar *)malloc(sizeof(struct Scalar));
     result = polynomialResultForVariableFunction(polynomial, X);
+
+    printf("\n    P(x) : \n");
+    outputPolynomial(polynomial);
+
 
     if(X->scalarType==INT){
         printf("\n    P( %d ) = ",*(int *)X->scalarData);
