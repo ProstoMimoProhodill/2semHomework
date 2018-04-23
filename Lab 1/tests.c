@@ -20,109 +20,103 @@ struct Scalar
     type scalarType;
 };
 
+
 void testInputPolynomialAddition()
 {
     struct Polynomial *polynomial1 = createPolynomial();
     struct Polynomial *polynomial2 = createPolynomial();
     struct Polynomial *result = polynomialAdditionFunction(polynomial1, polynomial2);
+    struct Polynomial *guess = guessPolynomial(result->n);
 
-    printf("\n    P1(x) : \n");
-    outputPolynomial(polynomial1);
-    printf("\n    P2(x) : \n");
-    outputPolynomial(polynomial2);
     printf("\n    P1(x)+P2(x) : \n");
     outputPolynomial(result);
+
+    for(int i=0;i<=result->n;i++){
+        if(result->dataType==INT){
+            if(*(int *)get(guess, i)== *(int *)get(result, i)){
+                printf("        Status[%d] - Ok\n",i);
+            }else{
+                printf("        Status[%d] - Failed\n",i);
+            }
+        }else if(result->dataType==DOUBLE){
+            if(*(float *)get(guess, i)== *(float *)get(result, i)){
+                printf("        Status[%d] - Ok\n",i);
+            }else{
+                printf("        Status[%d] - Failed\n",i);
+            }
+        }
+    }
 
     free(polynomial1);
     free(polynomial2);
     free(result);
 }
-
 
 void testInputPolynomialComposition()
 {
-
-}
-
-
-void testInputPolynomialMultiplication()
-{
-
-}
-
-
-void testInputPolynomialMultiplicationByScalar()
-{
-
-}
-
-
-void testInputPolynomialResultForVariable()
-{
-
-}
-
-
-void testRandomPolynomialAddition()
-{
-    struct Polynomial *polynomial1 = createRandomPolynomial();
-    struct Polynomial *polynomial2 = createRandomPolynomial();
-    struct Polynomial *result = polynomialAdditionFunction(polynomial1, polynomial2);
-
-    printf("\n    P1(x) : \n");
-    outputPolynomial(polynomial1);
-    printf("\n    P2(x) : \n");
-    outputPolynomial(polynomial2);
-    printf("\n    P1(x)+P2(x) : \n");
-    outputPolynomial(result);
-
-    free(polynomial1);
-    free(polynomial2);
-    free(result);
-}
-
-
-void testRandomPolynomialComposition()
-{
-    struct Polynomial *polynomial1 = createRandomPolynomial();
-    struct Polynomial *polynomial2 = createRandomPolynomial();
+    struct Polynomial *polynomial1 = createPolynomial();
+    struct Polynomial *polynomial2 = createPolynomial();
     struct Polynomial *result = polynomialCompositionFunction(polynomial1, polynomial2);
+    struct Polynomial *guess = guessPolynomial(result->n);
 
-    printf("\n    P1(x) : \n");
-    outputPolynomial(polynomial1);
-    printf("\n    P2(x) : \n");
-    outputPolynomial(polynomial2);
     printf("\n    P1(P2(x)) : \n");
     outputPolynomial(result);
 
+    for(int i=0;i<=result->n;i++){
+        if(result->dataType==INT){
+            if(*(int *)get(guess, i)== *(int *)get(result, i)){
+                printf("        Status[%d] - Ok\n",i);
+            }else{
+                printf("        Status[%d] - Failed\n",i);
+            }
+        }else if(result->dataType==DOUBLE){
+            if(*(float *)get(guess, i)== *(float *)get(result, i)){
+                printf("        Status[%d] - Ok\n",i);
+            }else{
+                printf("        Status[%d] - Failed\n",i);
+            }
+        }
+    }
+
     free(polynomial1);
     free(polynomial2);
     free(result);
 }
 
-
-void testRandomPolynomialMultiplication()
+void testInputPolynomialMultiplication()
 {
-    struct Polynomial *polynomial1 = createRandomPolynomial();
-    struct Polynomial *polynomial2 = createRandomPolynomial();
+    struct Polynomial *polynomial1 = createPolynomial();
+    struct Polynomial *polynomial2 = createPolynomial();
     struct Polynomial *result = polynomialMultiplicationFunction(polynomial1, polynomial2);
+    struct Polynomial *guess = guessPolynomial(result->n);
 
-    printf("\n    P1(x) : \n");
-    outputPolynomial(polynomial1);
-    printf("\n    P2(x) : \n");
-    outputPolynomial(polynomial2);
     printf("\n    P1(x)*P2(x) : \n");
     outputPolynomial(result);
 
+    for(int i=0;i<=result->n;i++){
+        if(result->dataType==INT){
+            if(*(int *)get(guess, i)== *(int *)get(result, i)){
+                printf("        Status[%d] - Ok\n",i);
+            }else{
+                printf("        Status[%d] - Failed\n",i);
+            }
+        }else if(result->dataType==DOUBLE){
+            if(*(float *)get(guess, i)== *(float *)get(result, i)){
+                printf("        Status[%d] - Ok\n",i);
+            }else{
+                printf("        Status[%d] - Failed\n",i);
+            }
+        }
+    }
+
     free(polynomial1);
     free(polynomial2);
     free(result);
 }
 
-
-void testRandomPolynomialMultiplicationByScalar()
+void testInputPolynomialMultiplicationByScalar()
 {
-    struct Polynomial *polynomial = createRandomPolynomial();
+    struct Polynomial *polynomial = createPolynomial();
     struct Scalar *scalar = (struct Scalar *)malloc(sizeof(struct Scalar));
 
     printf("    Input value of scalar : ");
@@ -150,11 +144,26 @@ void testRandomPolynomialMultiplicationByScalar()
 
     struct Polynomial *result = (struct Polynomial *)malloc(sizeof(struct Polynomial));
     result = polynomialMultiplicationByScalarFunction(polynomial, scalar);
+    struct Polynomial *guess = guessPolynomial(result->n);
 
-    printf("\n    P(x) : \n");
-    outputPolynomial(polynomial);
     printf("\n    A*P(x) :\n");
     outputPolynomial(result);
+
+    for(int i=0;i<=result->n;i++){
+        if(result->dataType==INT){
+            if(*(int *)get(guess, i)== *(int *)get(result, i)){
+                printf("        Status[%d] - Ok\n",i);
+            }else{
+                printf("        Status[%d] - Failed\n",i);
+            }
+        }else if(result->dataType==DOUBLE){
+            if(*(float *)get(guess, i)== *(float *)get(result, i)){
+                printf("        Status[%d] - Ok\n",i);
+            }else{
+                printf("        Status[%d] - Failed\n",i);
+            }
+        }
+    }
 
     free(polynomial);
     free(scalar);
@@ -162,9 +171,9 @@ void testRandomPolynomialMultiplicationByScalar()
 }
 
 
-void testRandomPolynomialResultForVariable()
+void testInputPolynomialResultForVariable()
 {
-    struct Polynomial *polynomial = createRandomPolynomial();
+    struct Polynomial *polynomial = createPolynomial();
     struct Scalar *X = (struct Scalar *)malloc(sizeof(struct Scalar));
 
     printf("    Input value of X : ");
@@ -190,12 +199,15 @@ void testRandomPolynomialResultForVariable()
         memcpy(X->scalarData, &p, sizeof(float));
     }
 
-    struct Scalar *result = (struct Scalar *)malloc(sizeof(struct Scalar));
-    result = polynomialResultForVariableFunction(polynomial, X);
+    struct Scalar *result = polynomialResultForVariableFunction(polynomial, X);
 
-    printf("\n    P(x) : \n");
-    outputPolynomial(polynomial);
-
+    void *guess;
+    printf("\n    Guess polynomial : ");
+    if(result->scalarType==INT){
+        scanf("%d", guess);
+    }else if(result->scalarType==DOUBLE){
+        scanf("%f", guess);
+    }
 
     if(X->scalarType==INT){
         printf("\n    P( %d ) = ",*(int *)X->scalarData);
@@ -209,60 +221,51 @@ void testRandomPolynomialResultForVariable()
         printf("%f\n",*(float *)result->scalarData);
     }
 
+    if(result->scalarType==INT){
+        if(*(int *)guess == *(int *)result->scalarData){
+                printf("    Status - Ok\n");
+            }else{
+                printf("    Status - Failed\n");
+            }
+    }else if(result->scalarType==DOUBLE){
+        if(*(float *)guess == *(float *)result->scalarData){
+                printf("    Status - Ok\n");
+            }else{
+                printf("    Status - Failed\n");
+            }
+    }
+
     free(polynomial);
     free(X);
     free(result);
 }
 
 
-void testLogPolynomialAddition()
+
+
+
+
+void testRandomPolynomialAddition()
 {
-    for(int i=0;i<=2;i++){
-       printf("/menu/Tests/P1(x)+P2(x)/Random/test %d/\n",i);
-       struct Polynomial *polynomial1 = createRandomPolynomial();
-       struct Polynomial *polynomial2 = createRandomPolynomial();
-
-       struct Polynomial *result = polynomialAdditionFunction(polynomial1, polynomial2);
-
-       free(polynomial1);
-       free(polynomial2);
-       free(result);
-    }
 
 }
 
-
-void testLogPolynomialComposition()
+void testRandomPolynomialComposition()
 {
-    for(int i=0;i<=10;i++){
-        printf("/menu/Tests/P1(P2(x)) /Random/test %d/\n",i);
-    }
 
 }
 
-
-void testLogPolynomialMultiplication()
+void testRandomPolynomialMultiplication()
 {
-    for(int i=0;i<=10;i++){
-        printf("/menu/Tests/P1(x)*P2(x) /Random/test %d/\n",i);
-    }
 
 }
 
-
-void testLogPolynomialMultiplicationByScalar()
+void testRandomPolynomialMultiplicationByScalar()
 {
-    for(int i=0;i<=10;i++){
-        printf("/menu/Tests/P(x)*a /Random/test %d/\n",i);
-    }
 
 }
 
-
-void testLogPolynomialResultForVariable()
+void testRandomPolynomialResultForVariable()
 {
-    for(int i=0;i<=10;i++){
-       printf("/menu/Tests/P(x) = /Random/test %d/\n",i);
-    }
 
 }

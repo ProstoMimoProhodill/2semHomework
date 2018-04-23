@@ -13,10 +13,4 @@ void testRandomPolynomialMultiplication();
 void testRandomPolynomialMultiplicationByScalar();
 void testRandomPolynomialResultForVariable();
 
-void testLogPolynomialAddition();
-void testLogPolynomialComposition();
-void testLogPolynomialMultiplication();
-void testLogPolynomialMultiplicationByScalar();
-void testLogPolynomialResultForVariable();
-
 #endif

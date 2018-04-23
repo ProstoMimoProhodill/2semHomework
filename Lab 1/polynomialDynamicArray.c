@@ -19,30 +19,95 @@ struct Scalar
     type scalarType;
 };
 
+
+struct Polynomial *guessPolynomial(int n)
+{
+    struct Polynomial *polynomial=malloc(sizeof(struct Polynomial));
+
+    polynomial->n = n;
+    polynomial->data = NULL;
+
+    printf("\n    Guess polynomial : \n");    
+    printf("         Input integer or float : ");
+
+    char datastr[100];
+    scanf("%s",&datastr);
+    type dataType = INT;
+    for(int i=0;datastr[i]!='\0';i++){
+        if(datastr[i]=='.'){
+            dataType = DOUBLE;
+            break;
+        }
+    }
+
+    if(dataType==INT){
+        polynomial->dataType=INT;
+        int element = atoi(datastr);
+        polynomial = push(polynomial, &element);
+    }else if(dataType==DOUBLE){
+        polynomial->dataType=DOUBLE;
+        float element = atof(datastr);
+        polynomial = push(polynomial, &element);
+    }
+
+    if(polynomial->dataType==INT){
+        for(int i=1;i<=polynomial->n;i++){
+            int element;
+            printf("                      Input int : ");
+            scanf("%d", &element);
+            polynomial = push(polynomial, &element);
+        }
+    }else if(polynomial->dataType==DOUBLE){
+        for(int i=1;i<=polynomial->n;i++){
+            float element;
+            printf("                    Input float : ");
+            scanf("%f", &element);
+            polynomial = push(polynomial, &element);
+        }
+    }
+    return polynomial;
+}
+
 struct Polynomial *createPolynomial()
 {
     struct Polynomial *polynomial=malloc(sizeof(struct Polynomial));
-    int n=0;
+    int flag=0,n=0;
 
-    int flag=0;
     while(!flag){
+        int found=0;
+        char nstr[100];
+        char alf[] = "0123456789";
+
         printf("    Input size of P(x) (from 0) : ");
-        char datastr[100];
-        scanf("%s",&datastr);
-        n = atoi(datastr);
-        if((n<0)||(strlen(datastr)>9)){
-            printf("    FROM 0 !11!  TRY AGAIN  \n");
-            flag=0;
+        scanf("%s",&nstr);
+        for(int i=0;nstr[i]!='\0';i++){
+            for(int j=0;alf[j]!='\0';j++){
+                if(nstr[i]==alf[j]){
+                    found++;
+                }
+            }
+        }
+
+        if(strlen(nstr)==found){
+            n=atoi(nstr);
+            if((n<0)||(strlen(nstr)>9)){
+                printf("    FROM 0 !11!  TRY AGAIN  \n");
+                flag=0;
+            }else{
+                flag=1;
+            }
         }else{
-            flag=1;
+            printf("    You haven't input a number\n");
+            flag=0;
         }
     }
 
     polynomial->n = n;
     polynomial->data = NULL;
 
-    char datastr[100];
     printf("         Input integer or float : ");
+
+    char datastr[100];
     scanf("%s",&datastr);
     type dataType = INT;
     for(int i=0;datastr[i]!='\0';i++){
@@ -129,8 +194,8 @@ struct Polynomial *push(struct Polynomial *polynomial, void *element)
         result = (struct Polynomial *)malloc( _msize(polynomial) + sizeof(int) );
         result->data = realloc(polynomial->data, (i+1)*sizeof(int));
 
-        if (result->data!=NULL) {           
-            *(((int *)result->data)+i) = *(int *)element;            
+        if (result->data!=NULL) {
+            *(((int *)result->data)+i) = *(int *)element;
         }else {
             free(result);
             printf("Error reallocating memory");
@@ -142,8 +207,8 @@ struct Polynomial *push(struct Polynomial *polynomial, void *element)
         result = (struct Polynomial *)malloc( _msize(polynomial) + sizeof(float) );
         result->data = realloc(polynomial->data, (i+1)*sizeof(float));
 
-        if (result->data!=NULL) {           
-            *(((float *)result->data)+i) = *(float *)element;            
+        if (result->data!=NULL) {
+            *(((float *)result->data)+i) = *(float *)element;
         }else {
             free(result);
             printf("Error reallocating memory");
@@ -203,6 +268,8 @@ void outputPolynomial(struct Polynomial *polynomial)
             printf("        double n: %d, a: %f  \n",i,*(float *)(p+i));
         }
     }
+
+    printf("\n");
 }
 
 void graphicalOutputPolynomial(struct Polynomial *polynomial)
@@ -527,9 +594,9 @@ struct Polynomial *polynomialCompositionFunction(struct Polynomial *polynomial1,
     oldData = malloc(_msize(polynomial2));
     memcpy(&oldData, &polynomial2, _msize(polynomial2));
 
-    for(int i=0;i<=polynomial1->n;i++){
+    for(int i=0;i<=polynomial1->n+1;i++){
         if(i==0){
-            result = change(result, i, polynomial1->data);
+            result = change(result, i, get(polynomial1, i));
         }else{
             if(i!=1){
                 free(data);
@@ -555,7 +622,7 @@ struct Polynomial *polynomialCompositionFunction(struct Polynomial *polynomial1,
                         float c = *(float *)get(result, j);
                         float d = c + (a*b);
                         result = change(result, j, &d);
-                    }    
+                    }
                 }
             }else if(polynomial1->dataType==DOUBLE){
                 if(polynomial2->dataType==INT){

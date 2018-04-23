@@ -4,6 +4,7 @@
 struct Polynomial;
 struct Scalar;
 
+struct Polynomial *guessPolynomial(int n);
 struct Polynomial *createPolynomial();
 struct Polynomial *createRandomPolynomial();
 

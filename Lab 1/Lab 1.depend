@@ -89,7 +89,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1523406814 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\interface.c
+1524516969 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\interface.c
 	"interface.h"
 	"polynomialList.h"
 	"polynomialDynamicArray.h"
@@ -97,24 +97,20 @@
 	<stdlib.h>
 	<windows.h>
 
-1521359827 d:\andrewproj\myprogram\c\2semhomework\lab 1\interface.h
+1521370627 d:\andrewproj\myprogram\c\2semhomework\lab 1\interface.h
 
 1519650612 d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomial.h
 
-1523406822 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\main.c
+1524515247 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\main.c
 	<stdio.h>
 	<stdlib.h>
-	"util.h"
-	"tests.h"
 	"interface.h"
-	"polynomialList.h"
-	"polynomialDynamicArray.h"
 
-1521471396 d:\andrewproj\myprogram\c\2semhomework\lab 1\util.h
+1523966899 d:\andrewproj\myprogram\c\2semhomework\lab 1\util.h
 
-1521535330 d:\andrewproj\myprogram\c\2semhomework\lab 1\tests.h
+1524515028 d:\andrewproj\myprogram\c\2semhomework\lab 1\tests.h
 
-1521537675 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\tests.c
+1524515146 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\tests.c
 	"util.h"
 	"tests.h"
 	"interface.h"
@@ -123,7 +119,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1521474262 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\util.c
+1521485062 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\util.c
 	"util.h"
 	<time.h>
 	<stdio.h>
@@ -137,9 +133,9 @@
 	<stdio.h>
 	<stdlib.h>
 
-1523901157 d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomialdynamicarray.h
+1524515458 d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomialdynamicarray.h
 
-1523899492 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomialdynamicarray.c
+1524516700 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomialdynamicarray.c
 	"util.h"
 	<math.h>
 	"polynomialDynamicArray.h"
@@ -147,9 +143,9 @@
 	<stdio.h>
 	<stdlib.h>
 
-1520274264 d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomiallist.h
+1520285064 d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomiallist.h
 
-1520961676 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomiallist.c
+1520972476 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomiallist.c
 	"polynomialList.h"
 	"util.h"
 	<math.h>

@@ -6,29 +6,6 @@
 #include <stdlib.h>
 #include <windows.h>
 
-void test()
-{
-    //polynomialMultiplication();
-    polynomialComposition();
-}
-
-void autoTest()
-{
-    HANDLE hConsole;
-    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole, 2);
-
-    testLogPolynomialAddition();
-    testLogPolynomialComposition();
-    testLogPolynomialMultiplication();
-    testLogPolynomialMultiplicationByScalar();
-    testLogPolynomialResultForVariable();
-
-    SetConsoleTextAttribute(hConsole, 8);
-    system("pause");
-}
-
-
 void menu(int startTo)
 {
     int again  = 1;
@@ -232,7 +209,7 @@ void menu(int startTo)
                         break;
                 }
                 break;
-            case 6:
+             case 6:
                 system("cls");
                 SetConsoleTextAttribute(hConsole, 12);
                 printf("/menu/Tests/\n");
@@ -438,10 +415,9 @@ void menu(int startTo)
                         undefined();
                         break;
                 }
-                break;
+                break;    
             case 7:
-                exit(0);
-                break;
+                return;
             default:
                 undefined();
                 break;
