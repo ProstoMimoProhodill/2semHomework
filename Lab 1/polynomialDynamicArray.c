@@ -27,7 +27,7 @@ struct Polynomial *guessPolynomial(int n)
     polynomial->n = n;
     polynomial->data = NULL;
 
-    printf("\n    Guess polynomial : \n");    
+    printf("\n    Guess polynomial : \n");
     printf("         Input integer or float : ");
 
     char datastr[100];
@@ -76,13 +76,13 @@ struct Polynomial *createPolynomial()
     while(!flag){
         int found=0;
         char nstr[100];
-        char alf[] = "0123456789";
+        char alf_n[] = "0123456789";
 
         printf("    Input size of P(x) (from 0) : ");
         scanf("%s",&nstr);
         for(int i=0;nstr[i]!='\0';i++){
-            for(int j=0;alf[j]!='\0';j++){
-                if(nstr[i]==alf[j]){
+            for(int j=0;alf_n[j]!='\0';j++){
+                if(nstr[i]==alf_n[j]){
                     found++;
                 }
             }
@@ -105,15 +105,43 @@ struct Polynomial *createPolynomial()
     polynomial->n = n;
     polynomial->data = NULL;
 
-    printf("         Input integer or float : ");
+    flag=0;
 
     char datastr[100];
-    scanf("%s",&datastr);
-    type dataType = INT;
-    for(int i=0;datastr[i]!='\0';i++){
-        if(datastr[i]=='.'){
-            dataType = DOUBLE;
-            break;
+    type dataType=INT;
+
+    while(!flag){
+        int found=0;
+        char alf_data[] = "0123456789-.";
+
+        int point=0;
+
+        printf("         Input integer or float : ");
+        scanf("%s",&datastr);
+        for(int i=0;datastr[i]!='\0';i++){
+            if(datastr[i]=='.'){
+                dataType=DOUBLE;
+                point++;
+            }
+
+            for(int j=0;alf_data[j]!='\0';j++){
+                if(datastr[i]==alf_data[j]){
+                    found++;
+                }
+            }
+        }
+
+        if((strlen(datastr)==found)&&(point<2)){
+            n=atoi(datastr);
+            if(strlen(datastr)>9){
+                printf("         Big number...   \n");
+                flag=0;
+            }else{
+                flag=1;
+            }
+        }else{
+            printf("         You haven't input a number\n");
+            flag=0;
         }
     }
 
@@ -129,17 +157,71 @@ struct Polynomial *createPolynomial()
 
     if(polynomial->dataType==INT){
         for(int i=1;i<=polynomial->n;i++){
-            int element;
-            printf("                      Input int : ");
-            scanf("%d", &element);
-            polynomial = push(polynomial, &element);
+            flag=0;
+            char dataster[100];
+            char alf_int[] = "0123456789-";
+
+            while(!flag){
+                int found=0;
+                printf("                      Input int : ");
+                scanf("%s", &datastr);
+
+                for(int i=0;datastr[i]!='\0';i++){
+                    for(int j=0;alf_int[j]!='\0';j++){
+                        if(datastr[i]==alf_int[j]){
+                            found++;
+                        }
+                    }
+                }
+
+                if(strlen(datastr)==found){
+                    int element = atoi(datastr);
+                    if(strlen(datastr)>9){
+                        printf("                      Big number...   \n");
+                        flag=0;
+                    }else{
+                        flag=1;
+                        polynomial = push(polynomial, &element);
+                    }
+                }else{
+                    printf("                      You haven't input a number\n");
+                    flag=0;
+                }
+            }
         }
     }else if(polynomial->dataType==DOUBLE){
         for(int i=1;i<=polynomial->n;i++){
-            float element;
-            printf("                    Input float : ");
-            scanf("%f", &element);
-            polynomial = push(polynomial, &element);
+            flag=0;
+            char dataster[100];
+            char alf_int[] = "0123456789.-";
+
+            while(!flag){
+                int found=0;
+                printf("                    Input float : ");                
+                scanf("%s", &datastr);
+
+                for(int i=0;datastr[i]!='\0';i++){
+                    for(int j=0;alf_int[j]!='\0';j++){
+                        if(datastr[i]==alf_int[j]){
+                            found++;
+                        }
+                    }
+                }
+
+                if(strlen(datastr)==found){
+                    float element = atof(datastr);
+                    if(strlen(datastr)>9){
+                        printf("                      Big number...   \n");
+                        flag=0;
+                    }else{
+                        flag=1;
+                        polynomial = push(polynomial, &element);
+                    }
+                }else{
+                    printf("                      You haven't input a number\n");
+                    flag=0;
+                }
+            }
         }
     }
     return polynomial;

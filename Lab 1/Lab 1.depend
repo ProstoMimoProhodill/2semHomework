@@ -108,9 +108,9 @@
 
 1523966899 d:\andrewproj\myprogram\c\2semhomework\lab 1\util.h
 
-1524515028 d:\andrewproj\myprogram\c\2semhomework\lab 1\tests.h
+1524516920 d:\andrewproj\myprogram\c\2semhomework\lab 1\tests.h
 
-1524515146 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\tests.c
+1524518731 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\tests.c
 	"util.h"
 	"tests.h"
 	"interface.h"
@@ -135,7 +135,7 @@
 
 1524515458 d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomialdynamicarray.h
 
-1524516700 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomialdynamicarray.c
+1524561474 source:d:\andrewproj\myprogram\c\2semhomework\lab 1\polynomialdynamicarray.c
 	"util.h"
 	<math.h>
 	"polynomialDynamicArray.h"
