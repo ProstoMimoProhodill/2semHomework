@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1525206325 source:d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\main.cpp
+	<iostream>
+	"Stack.h"
+
+1525207417 d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\stack.h
+	<iostream>
+
+1525207384 source:d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\stack.cpp
+	<iostream>
+	<conio.h>
+	"Stack.h"
+
+1525207475 source:d:\andrewproj\myprogram\c\2semhomework\lab 2\main.cpp
+	<iostream>
+	"Stack.h"
+
+1525207892 d:\andrewproj\myprogram\c\2semhomework\lab 2\stack.h
+	<iostream>
+

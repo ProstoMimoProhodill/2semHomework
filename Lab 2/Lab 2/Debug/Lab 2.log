@@ -1,7 +1,0 @@
-﻿  Lab 2.cpp
-d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\lab 2.cpp(23): warning C4091: typedef : пропускается слева от "Stack<Type>::Element", когда ни одна переменная не объявлена
-  d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\lab 2.cpp(39): note: см. ссылку на создание экземпляров класса шаблон при компиляции "Stack<Type>"
-d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\lab 2.cpp(23): warning C4091: typedef : пропускается слева от "Stack<int>::Element", когда ни одна переменная не объявлена
-  d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\lab 2.cpp(124): note: см. ссылку на создание экземпляров класса шаблон при компиляции "Stack<int>"
-  Lab 2.vcxproj -> D:\AndrewProj\MyProgram\C\2semHomework\Lab 2\Debug\Lab 2.exe
-  Lab 2.vcxproj -> D:\AndrewProj\MyProgram\C\2semHomework\Lab 2\Debug\Lab 2.pdb (Full PDB)
