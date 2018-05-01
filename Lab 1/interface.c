@@ -415,9 +415,9 @@ void menu(int startTo)
                         undefined();
                         break;
                 }
-                break;    
+                break;
             case 7:
-                return;
+                exit(0);
             default:
                 undefined();
                 break;

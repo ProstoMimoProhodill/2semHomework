@@ -1,0 +1,17 @@
+﻿  Lab 2.cpp
+d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\lab 2.cpp(13): warning C4099: Stack: имя типа, ранее отображенное с помощью "class", теперь отображено с помощью "struct"
+  d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\lab 2.cpp(9): note:  см. объявление "Stack"
+d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\lab 2.cpp(18): warning C4099: Stack: имя типа, ранее отображенное с помощью "class", теперь отображено с помощью "struct"
+  d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\lab 2.cpp(9): note:  см. объявление "Stack"
+d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\lab 2.cpp(18): error C2061: синтаксическая ошибка: идентификатор "dataType"
+d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\lab 2.cpp(17): error C3857: Stack::push: множественные списки параметров шаблон не допускаются
+d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\lab 2.cpp(19): warning C4099: Stack: имя типа, ранее отображенное с помощью "class", теперь отображено с помощью "struct"
+  d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\lab 2.cpp(9): note:  см. объявление "Stack"
+d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\lab 2.cpp(22): warning C4099: Stack: имя типа, ранее отображенное с помощью "class", теперь отображено с помощью "struct"
+  d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\lab 2.cpp(19): note:  см. объявление "Stack"
+d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\lab 2.cpp(23): warning C4099: Stack: имя типа, ранее отображенное с помощью "class", теперь отображено с помощью "struct"
+  d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\lab 2.cpp(19): note:  см. объявление "Stack"
+d:\andrewproj\myprogram\c\2semhomework\lab 2\lab 2\lab 2.cpp(24): fatal error C1903: не удается восстановить после предыдущих ошибок; остановка компиляции
+  ВНУТРЕННЯЯ ОШИБКА КОМПИЛЯТОРА в "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe"
+      Выберите команду "Техническая поддержка" в меню "Справка" Visual C++ или
+      откройте справочный файл технической поддержки для получения доп. сведений

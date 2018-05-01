@@ -197,7 +197,7 @@ struct Polynomial *createPolynomial()
 
             while(!flag){
                 int found=0;
-                printf("                    Input float : ");                
+                printf("                    Input float : ");
                 scanf("%s", &datastr);
 
                 for(int i=0;datastr[i]!='\0';i++){
@@ -309,14 +309,10 @@ struct Polynomial *change(struct Polynomial *polynomial, int i, void *element)
     struct Polynomial *result = (struct Polynomial *)malloc(_msize(polynomial));
     if(polynomial->dataType==INT){
         result->data = realloc(polynomial->data, _msize(polynomial->data));
-        int *p = (int *)realloc(polynomial->data, _msize(polynomial->data));
-        *(p+i) = *(int *)element;
-        memcpy(result->data, (void *)p, _msize(polynomial->data));
+        *(((int *)result->data)+i) = *(int *)element;
     }else if(polynomial->dataType==DOUBLE){
         result->data = realloc(polynomial->data, _msize(polynomial->data));
-        float *p = (float *)realloc(polynomial->data, _msize(polynomial->data));
-        *(p+i) = *(float *)element;
-        memcpy(result->data, (void *)p, _msize(polynomial->data));
+        *(((float *)result->data)+i) = *(float *)element;
     }
     result->dataType = polynomial->dataType;
     result->n = polynomial->n;
@@ -676,7 +672,7 @@ struct Polynomial *polynomialCompositionFunction(struct Polynomial *polynomial1,
     oldData = malloc(_msize(polynomial2));
     memcpy(&oldData, &polynomial2, _msize(polynomial2));
 
-    for(int i=0;i<=polynomial1->n+1;i++){
+    for(int i=0;i<=polynomial1->n;i++){
         if(i==0){
             result = change(result, i, get(polynomial1, i));
         }else{
