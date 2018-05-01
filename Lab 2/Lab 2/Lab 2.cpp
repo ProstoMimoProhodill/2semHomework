@@ -1,70 +1,117 @@
 #include <iostream>
-#include <Windows.h>
+#include <conio.h>
 #include "stdafx.h"
 
 using namespace std;
 
+template <typename Re_type, typename Im_type>
+struct Complex
+{
+	Re_type Real;
+	Im_type Imagine;
+};
 
+template <class Type>
 class Stack
 {
 	private:
 		int size;
-		void *data;
-		struct Stack *next;
-	public:
-		Stack();
-
-		template <typename dataType>
-		struct Stack *push(struct Stack *S, dataType data);
-		struct Stack *pop(struct Stack *S, int *i);
-
-		template <typename dataType>
-		dataType get(struct Stack *S, int *i);
-		void output(struct Stack *S);
-
-		int getSize() 
+		typedef struct Element
 		{
-			return size;
-		}
+			Type data;
+			Element *next;
+		};
+		Element *head;
+	public:
+		Stack() : head(NULL), size(0) {}
+		~Stack() { del(); }
+
+		bool push(Type data);
+		bool pop();
+		Type get(int i);
+		void output();
+		void del();
+
+		int getSize() {return size;}
 };
 
-Stack::Stack()
+template <class Type>
+bool Stack<Type>::push(Type data)
 {
-	printf("constructor\n");
+	Element *elem = new Element;
+	(head==NULL) ? (elem->next = NULL) : (elem->next = head);
+	elem->data = data;
+	head = elem;
+	size++;
+	return true;
 }
 
-template <typename dataType>
-struct Stack *Stack::push(struct Stack *S, dataType data)
+template <class Type>
+bool Stack<Type>::pop()
 {
-	printf("push\n");
-	if (S.getSize == 0) {
-		S = realloc(S, _msize(S)+sizeof(int));
+	if (size==0) return false;
+	Element *elem = head;
+	head = head->next;
+	delete elem;
+	size--;
+	return true;
+}
+
+template <class Type>
+Type Stack<Type>::get(int i)
+{
+	if (head != NULL) {
+		Element *current;
+		for (current = head; i>0; i--)
+			current = current->next;
+		return current->data;
 	}
 	else {
-
+		printf("Stack is empty...\n");
+		return 0;
 	}
 }
 
-struct Stack *Stack::pop(struct Stack *S, int *i)
+template <class Type>
+void Stack<Type>::output()
 {
-	printf("pop");
+	if (head != NULL) {
+		Element *current = head;
+		printf("%d\n", current->data);
+		while (current->next != NULL) {
+			current = current->next;
+			printf("%d\n", current->data);
+		}
+	}
+	else {
+		printf("Stack is empty...\n");
+	}
+	printf("\n");
 }
 
-template <typename dataType>
-dataType Stack::get(struct Stack *S, int *i)
+template <class Type>
+void Stack<Type>::del()
 {
-
-}
-
-void Stack::output(struct Stack *S)
-{
-
+	Element *current = head;
+	Element *elem = head;
+	while (elem != NULL)
+	{
+		current = current->next;
+		delete elem;
+		elem = current;
+	}
+	head = NULL;
+	size = 0;
 }
 
 int main()
 {
-	Stack stack;
+	Stack <int> stack;
+	for (int i = 0; i < 5; i++) {
+		stack.push(i);
+	}
 
+	stack.output();
     return 0;
 }
 
