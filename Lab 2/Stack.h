@@ -23,14 +23,12 @@ private:
 public:
 	Stack() : head(NULL), size(0) {}
 	~Stack() { del(); }
-
+    int getSize() { return size; }
 	bool push(Type data);
 	bool pop();
-	Type get(int i);
-	void output();
+    void output();
 	void del();
-
-	int getSize() { return size; }
+	Type get();
 };
 
 template <class Type> bool Stack<Type>::push(Type data)
@@ -45,23 +43,23 @@ template <class Type> bool Stack<Type>::push(Type data)
 
 template <class Type> bool Stack<Type>::pop()
 {
-	if (size == 0) return false;
-	Element *elem = head;
-	head = head->next;
-	delete elem;
-	size--;
-	return true;
+	if (size == 0){
+        return false;
+    }else{
+        Element *elem = head;
+        head = head->next;
+        delete elem;
+        size--;
+        return true;
+    }
 }
 
-template <class Type> Type Stack<Type>::get(int i)
+template <class Type> Type Stack<Type>::get()
 {
 	if (head != NULL) {
-		Element *current;
-		for (current = head; i>0; i--)
-			current = current->next;
-		return current->data;
-	}
-	else {
+		Element *elem = head;
+		return elem->data;
+	}else {
 		cout<<"Stack is empty...\n";
 		return 0;
 	}
@@ -76,8 +74,7 @@ template <class Type> void Stack<Type>::output()
 			current = current->next;
 			cout<<current->data<<"\n";
 		}
-	}
-	else {
+	}else {
 		cout<<"Stack is empty...\n";
 	}
 	cout<<"\n";
@@ -96,6 +93,84 @@ template <class Type> void Stack<Type>::del()
 	head = NULL;
 	size = 0;
 }
+
+
+template <class Type> Stack<Type> sort(Stack<Type> s)
+{
+    Stack<Type> result;
+    int size = s.getSize();
+    Type *a = new Type[size];
+    for(int i=0;i<size;i++){
+        a[i] = s.get();
+        s.pop();
+    }
+
+    for(int i=size-1;i>=0;i--){
+        for(int j=0;j<i;j++){
+            if(a[j]>a[j+1]){
+                Type tmp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = tmp;
+            }
+        }
+     }
+
+     for(int i=size-1;i>=0;i--){
+        result.push(a[i]);
+     }
+
+     delete [] a;
+     return result;
+}
+
+template <class Type> Stack<Type> map(Stack<Type> s)
+{
+
+}
+
+template <class Type> Stack<Type> where(Stack<Type> s)
+{
+
+}
+
+template <class Type> Stack<Type> reduce(Stack<Type> s)
+{
+
+}
+
+template <class Type> Stack<Type> merger(Stack<Type> s)
+{
+
+}
+
+template <class Type> Stack<Type> extractionOfSubsequence(Stack<Type> s)
+{
+
+}
+
+template <class Type> Stack<Type> concatenation(Stack <Type> s1, Stack <Type> s2)
+{
+    Stack <Type> result;
+    int size_s1 = s1.getSize();
+    int size_s2 = s2.getSize();
+    Type *a = new Type[size_s1 + size_s2];
+
+    for(int i=0;i<size_s1;i++){
+        a[i] = s1.get();
+        s1.pop();
+    }
+
+    for(int i=0;i<size_s2;i++){
+        a[i + size_s1] = s2.get();
+        s2.pop();
+    }
+
+    for(int i=size_s1 + size_s2-1;i>=0;i--){
+        result.push(a[i]);
+    }
+    return result;
+}
+
 
 #endif
 
