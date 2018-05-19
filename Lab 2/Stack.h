@@ -20,10 +20,9 @@ template <typename Type> struct Complex
 
 template <class Type> class Stack
 {
-protected:
-    int size;
 private:
-	typedef struct Element
+    int size;
+    typedef struct Element
 	{
 		Type data;
 		Element *next;
@@ -35,7 +34,7 @@ public:
 
     int getSize() { return size; }
 
-	virtual bool push(Type data){
+	bool push(Type data){
         Element *elem = new Element;
         (head == NULL) ? (elem->next = NULL) : (elem->next = head);
         elem->data = data;
@@ -44,7 +43,7 @@ public:
         return true;
     }
 
-	virtual bool pop(){
+	bool pop(){
         if (size == 0){
             return false;
         }else{
@@ -56,21 +55,7 @@ public:
         }
     }
 
-    virtual void output(){
-        if (head != NULL) {
-            Element *current = head;
-            cout<<current->data<<"\n";
-            while (current->next != NULL) {
-                current = current->next;
-                cout<<current->data<<"\n";
-            }
-        }else {
-            cout<<"Stack is empty...\n";
-        }
-        cout<<"\n";
-    }
-
-	virtual void del(){
+	void del(){
         Element *current = head;
         Element *elem = head;
         while (elem != NULL)
@@ -89,88 +74,27 @@ public:
             return elem->data;
         }else {
             cout<<"Stack is empty...\n";
-            return 0;
         }
     }
 
 };
 
-template <class Type> class Stack_Complex : public Stack<Type>
-{
-private:
-    typedef struct Element_Complex
-    {
-        Type Re_data;
-        Type Im_data;
-        Element_Complex *next;
-    };
-    Element_Complex *head;
-public:
-    Stack_Complex <Type>() : Stack <Type>() {}
-
-    bool push(struct Complex <Type> data){
-        Element_Complex *elem = new Element_Complex;
-        (head == NULL) ? (elem->next = NULL) : (elem->next = head);
-        elem->Re_data = data.Real;
-        elem->Im_data = data.Imagine;
-        head = elem;
-        this->size++;
-        return true;
+template <typename Type> void output(struct Stack<Type> s){
+    int size = s.getSize();
+    for(int i=0;i<size;i++){
+        cout<<s.get()<<"\n";
+        s.pop();
     }
+}
 
-    bool pop() override {
-        if (this->size == 0){
-            return false;
-        }else{
-            Element_Complex *elem = head;
-            head = head->next;
-            delete elem;
-            this->size--;
-            return true;
-        }
+template <typename Type> void output(struct Stack<Complex<Type>> s){
+    int size = s.getSize();
+    for(int i=0;i<size;i++){
+        cout<<s.get().Real<<"+i("<<s.get().Imagine<<")\n";
+        s.pop();
     }
+}
 
-    void del() override {
-        Element_Complex *current = head;
-        Element_Complex *elem = head;
-        while (elem != NULL)
-        {
-            current = current->next;
-            delete elem;
-            elem = current;
-        }
-        head = NULL;
-        this->size = 0;
-    }
-
-    void output() override {
-        if (head != NULL) {
-            Element_Complex *current = head;
-            cout<<current->Re_data<<"+i("<<current->Im_data<<")\n";
-            while (current->next != NULL) {
-                current = current->next;
-                cout<<current->Re_data<<"+i("<<current->Im_data<<")\n";
-            }
-        }else {
-            cout<<"Stack is empty...\n";
-        }
-        cout<<"\n";
-    }
-
-    struct Complex <Type> get(){
-        struct Complex <Type> comp;
-        if (head != NULL) {
-            Element_Complex *elem = head;
-            comp.Real = elem->Re_data;
-            comp.Imagine = elem->Im_data;
-        }else {
-            cout<<"Stack is empty...\n";
-            comp.Real = 0;
-            comp.Imagine = 0;
-        }
-        return comp;
-    }
-};
 
 template <class Type> Stack<Type> sort(Stack<Type> s)
 {
@@ -270,29 +194,6 @@ template <class Type> Stack<Type> extractionOfSubsequence(Stack<Type> s, string 
     return result;
 }
 
-template <class Type> Stack<Type> concatenation(Stack <Type> s1, Stack <Type> s2)
-{
-    Stack <Type> result;
-    int size_s1 = s1.getSize();
-    int size_s2 = s2.getSize();
-    Type *a = new Type[size_s1 + size_s2];
-
-    for(int i=0;i<size_s1;i++){
-        a[i] = s1.get();
-        s1.pop();
-    }
-
-    for(int i=0;i<size_s2;i++){
-        a[i + size_s1] = s2.get();
-        s2.pop();
-    }
-
-    for(int i=size_s1 + size_s2-1;i>=0;i--){
-        result.push(a[i]);
-    }
-    delete [] a;
-    return result;
-}
 
 #endif
 

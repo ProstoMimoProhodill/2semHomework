@@ -11,13 +11,13 @@
 	<conio.h>
 	"Stack.h"
 
-1526482021 source:d:\andrewproj\myprogram\c\2semhomework\lab 2\main.cpp
+1526724716 source:d:\andrewproj\myprogram\c\2semhomework\lab 2\main.cpp
 	<iostream>
 	<functional>
 	<algorithm>
 	"Stack.h"
 
-1526482269 d:\andrewproj\myprogram\c\2semhomework\lab 2\stack.h
+1526724765 d:\andrewproj\myprogram\c\2semhomework\lab 2\stack.h
 	<stdio.h>
 	<iostream>
 	<string>
