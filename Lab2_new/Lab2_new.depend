@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1529605076 source:d:\andrewproj\myprogram\c\2semhomework\lab2_new\main.cpp
+	<iostream>
+	<functional>
+	<algorithm>
+	"Stack.h"
+
+1529606554 d:\andrewproj\myprogram\c\2semhomework\lab2_new\stack.h
+
