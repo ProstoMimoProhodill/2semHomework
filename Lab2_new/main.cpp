@@ -3,8 +3,9 @@ using namespace std;
 
 int main()
 {
+    autotest();
     while(true){
-        choose_task();
+        menu();
     }
     return 0;
 }

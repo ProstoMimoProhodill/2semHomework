@@ -1,9 +1,24 @@
 # depslib dependency file v1.0
-1529605076 source:d:\andrewproj\myprogram\c\2semhomework\lab2_new\main.cpp
+1529617591 source:d:\andrewproj\myprogram\c\2semhomework\lab2_new\main.cpp
+	"Interface.h"
+
+1529618651 d:\andrewproj\myprogram\c\2semhomework\lab2_new\stack.h
+	<stdio.h>
+	<iostream>
+	<string>
+	<math.h>
+	<windows.h>
+
+1529618518 d:\andrewproj\myprogram\c\2semhomework\lab2_new\interface.h
 	<iostream>
 	<functional>
 	<algorithm>
+	<windows.h>
 	"Stack.h"
+	"Test.h"
 
-1529606554 d:\andrewproj\myprogram\c\2semhomework\lab2_new\stack.h
+1529619125 d:\andrewproj\myprogram\c\2semhomework\lab2_new\test.h
+	"Stack.h"
+	"Interface.h"
+	<string>
 

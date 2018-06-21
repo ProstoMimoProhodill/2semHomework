@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 #include <math.h>
+#include <windows.h>
+
 using namespace std;
 
 template <typename Type> struct Complex
@@ -75,9 +77,14 @@ public:
 
 
 template <typename Type> void input(Stack<Type> &s){
+    HANDLE hConsole;
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
     int N = 0;
     Type element;
+    SetConsoleTextAttribute(hConsole, 12);
     cout<<"Input number N of elements: ";
+    SetConsoleTextAttribute(hConsole, 8);
     cin>>N;
 
     for(int i=0;i<N;i++){
@@ -85,12 +92,19 @@ template <typename Type> void input(Stack<Type> &s){
         cin>>element;
         s.push(element);
     }
+
+    system("cls");
 }
 
 template <typename Type> void input(Stack<Complex<Type>> &s){
+    HANDLE hConsole;
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
     int N = 0;
     Complex<Type> element_complex;
+    SetConsoleTextAttribute(hConsole, 12);
     cout<<"Input number N of elements: ";
+    SetConsoleTextAttribute(hConsole, 8);
     cin>>N;
 
     for(int i=0;i<N;i++){
@@ -98,6 +112,8 @@ template <typename Type> void input(Stack<Complex<Type>> &s){
         cin>>element_complex.Real>>element_complex.Imagine;
         s.push(element_complex);
     }
+
+    system("cls");
 }
 
 template <typename Type> void output(struct Stack<Type> a){
