@@ -2,14 +2,14 @@
 1529617591 source:d:\andrewproj\myprogram\c\2semhomework\lab2_new\main.cpp
 	"Interface.h"
 
-1529618651 d:\andrewproj\myprogram\c\2semhomework\lab2_new\stack.h
+1529656739 d:\andrewproj\myprogram\c\2semhomework\lab2_new\stack.h
 	<stdio.h>
 	<iostream>
 	<string>
 	<math.h>
 	<windows.h>
 
-1529618518 d:\andrewproj\myprogram\c\2semhomework\lab2_new\interface.h
+1529652250 d:\andrewproj\myprogram\c\2semhomework\lab2_new\interface.h
 	<iostream>
 	<functional>
 	<algorithm>
@@ -17,7 +17,7 @@
 	"Stack.h"
 	"Test.h"
 
-1529619125 d:\andrewproj\myprogram\c\2semhomework\lab2_new\test.h
+1529656941 d:\andrewproj\myprogram\c\2semhomework\lab2_new\test.h
 	"Stack.h"
 	"Interface.h"
 	<string>

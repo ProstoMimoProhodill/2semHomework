@@ -571,17 +571,17 @@ template <class Type, typename Func> separation_result<Type> *separation(Stack<T
         A.pop();
     }
 
-    Stack<Type> S_true = result->true_stack;
-    Stack<Type> S_false = result->false_stack;
+    Stack<Type> *S_true = &result->true_stack;
+    Stack<Type> *S_false = &result->false_stack;
 
     int true_stack_size = true_stack->getSize(), false_stack_size = false_stack->getSize();
     for(auto i=0;i<true_stack_size;i++){
-        S_true.push(true_stack->get());
+        S_true->push(true_stack->get());
         true_stack->pop();
     }
 
-    for(auto i=0;i<true_stack_size;i++){
-        S_false.push(false_stack->get());
+    for(auto i=0;i<false_stack_size;i++){
+        S_false->push(false_stack->get());
         false_stack->pop();
     }
 
@@ -608,17 +608,17 @@ template <class Type, typename Func> separation_result<Complex<Type>> *separatio
         A.pop();
     }
 
-    Stack<Complex<Type>> S_true = result->true_stack;
-    Stack<Complex<Type>> S_false = result->false_stack;
+    Stack<Complex<Type>> *S_true = &result->true_stack;
+    Stack<Complex<Type>> *S_false = &result->false_stack;
 
     int true_stack_size = true_stack->getSize(), false_stack_size = false_stack->getSize();
     for(auto i=0;i<true_stack_size;i++){
-        S_true.push(true_stack->get());
+        S_true->push(true_stack->get());
         true_stack->pop();
     }
 
-    for(auto i=0;i<true_stack_size;i++){
-        S_false.push(false_stack->get());
+    for(auto i=0;i<false_stack_size;i++){
+        S_false->push(false_stack->get());
         false_stack->pop();
     }
 

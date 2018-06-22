@@ -7,7 +7,6 @@
 
 bool map_test()
 {
-    bool result;
     int count_int = 0;
     Stack<int> stack_int;
     int answer_int[] = {2, 2 ,1 , 1, 1};
@@ -31,7 +30,6 @@ bool map_test()
 
 bool where_test()
 {
-    bool result;
     int count_int = 0;
     Stack<int> stack_int;
     int data_int[] = {-1, 2 -3, -4,5};
@@ -59,7 +57,6 @@ bool where_test()
 
 bool reduce_test()
 {
-    bool result;
     int count_int = 0;
     Stack<int> stack_int;
     int answer_int = 387;
@@ -77,7 +74,6 @@ bool reduce_test()
 
 bool concatenation_test()
 {
-    bool result;
     int count_int = 0;
     Stack<int> stack_int1;
     Stack<int> stack_int2;
@@ -101,7 +97,6 @@ bool concatenation_test()
 
 bool recovery_test()
 {
-    bool result;
     int count_int = 0;
     Stack<int> stack_int;
     int answer_int[] = {4 ,3};
@@ -138,7 +133,6 @@ bool search_subsequence_test()
 
 bool merger_test()
 {
-    bool result;
     int count_int = 0;
 
     Stack<int> stack_int1, stack_int2;
@@ -159,12 +153,50 @@ bool merger_test()
     }
 }
 
-string bool_string(bool b){
-    if(b==true){
-        return "true";
-    }else{
-        return "false";
+
+bool separation_test()
+{
+    int count_int = 0;
+    Stack<int> stack_int;
+    int data[] = {-1, 2, -3, -4, 5};
+    for(int i=0;i<5;i++) stack_int.push(data[i]);
+
+    Stack<int> answer_true = (*separation(&stack_int, [](int x){
+                                                bool b;
+                                                (x<0)?(b=true):(b=false);
+                                                return b; } )).true_stack;
+
+    Stack<int> answer_false = (*separation(&stack_int, [](int x){
+                                                bool b;
+                                                (x<0)?(b=true):(b=false);
+                                                return b; } )).false_stack;
+
+    int quest_true[] = {-4, -3, -1};
+    int quest_false[] = {5, 2};
+
+    for(int i=0;i<3;i++){
+        if(answer_true.get()==quest_true[i]) count_int++;
+        answer_true.pop();
     }
+
+    for(int i=0;i<2;i++){
+        if(answer_false.get()==quest_false[i]) count_int++;
+        answer_false.pop();
+    }
+
+    if(count_int==5){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+string bool_string(bool b){
+        if(b==true){
+            return "true";
+        }else{
+            return "false";
+        }
 }
 
 void autotest()
@@ -181,6 +213,7 @@ void autotest()
     cout<<"recovery - "<<bool_string(recovery_test())<<"\n";
     cout<<"search_subsequence - "<<bool_string(search_subsequence_test())<<"\n";
     cout<<"merger - "<<bool_string(merger_test())<<"\n";
+    cout<<"separation - "<<bool_string(separation_test())<<"\n";
     system("pause");
     system("cls");
 }
